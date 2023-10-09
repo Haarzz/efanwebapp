@@ -1,9 +1,11 @@
 import { useNavigate } from "react-router-dom";
+import localStorageKey from "../constant/localStorageKey.jsx";
 
 export default function Sidebar() {
     const navigate = useNavigate();
 const handleLogout = () => {
   try {
+    localStorage.setItem(localStorageKey.JWT_TOKEN_KEY , null);
     navigate("/login");
   } catch {
     console.log("Error Logout");
@@ -53,7 +55,7 @@ const handleLogout = () => {
           </a>
         </li>
         <li className="nav-item text-light">
-          <a href="" onClick={handleLogout} className="nav-link text-light" aria-current="page">
+          <a onClick={handleLogout} className="nav-link text-light" aria-current="page">
             <span className="ms-2 bi bi-box-arrow-right d-none d-sm-inline"> &nbsp;Logout</span>
           </a>
         </li>
