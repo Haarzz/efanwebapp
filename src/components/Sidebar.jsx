@@ -53,7 +53,7 @@ const handleLogout = () => {
           </a>
         </li>
         <li className="nav-item text-light">
-          <a href="/logout" onClick={handleLogout} className="nav-link text-light" aria-current="page">
+          <a href="" onClick={handleLogout} className="nav-link text-light" aria-current="page">
             <span className="ms-2 bi bi-box-arrow-right d-none d-sm-inline"> &nbsp;Logout</span>
           </a>
         </li>

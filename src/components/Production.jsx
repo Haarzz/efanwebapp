@@ -1,9 +1,25 @@
 import Sidebar from "./Sidebar";
 import './Production.css';
 import { useEffect, useState } from "react";
+import ModalFormInput from "./ModalFormInput";
+import PropTypes from 'prop-types';
 
-export default function Production() {
-    const [dateTime, setDateTime] = useState('');
+
+Production.propTypes = {
+    modelId : PropTypes.any,
+    refresh : PropTypes.func,
+};
+
+export default function Production( modelId, refresh) {
+    const prodTitle = "Production Monitoring";
+  useEffect(()=>{
+    const oriTitle = document.title;
+    document.title = prodTitle;
+    return () => {
+      document.title = oriTitle;
+    }
+  })
+    const [dateTime, setDateTime] = useState('');   
 
   useEffect(() => {
     // Function to update the date and time
@@ -45,7 +61,7 @@ export default function Production() {
                         <h2 className="text-center fw-bolder text-light">MOTOR ASSY 1</h2>
                     </div>
                     <div className="col-2" id="inputplan">
-                        <button className="btn btn-light btn-sm mt-1 text-dark fw-bolder">Input Plan</button>
+                        <button className="btn btn-light btn-sm mt-1 text-dark fw-bolder" data-bs-toggle="modal" data-bs-target="#inputdata" >Input Plan</button>
                     </div>
                 </div>
               </div>
@@ -55,12 +71,13 @@ export default function Production() {
                     <p className="text-light fw-bolder py-1">Date : {dateTime} </p>
                 </div>
                 <div className="col-2">
-                    
+
                 </div>
             </div>
           </div>
         </div>
       </div>
+      <ModalFormInput refresh={refresh} />
     </>
   );
 }
