@@ -1,0 +1,26 @@
+.loginbg {
+    background: #282A37;
+    ;
+}
+.navbar {
+    font-weight: bold;
+}
+.cardlogin{
+    margin-left: 25%;
+    margin-right: 25%;
+}
+.buttonlogin{
+    text-align: center;
+    margin-top: 5%;
+}
+.cardregist {
+    margin-left: 25%;
+    margin-right: 25%;
+}
+.buttonregist {
+    text-align: center;
+    margin-top: 5%;
+}
+#cardbg{
+    background: #323645;
+}

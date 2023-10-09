@@ -1,0 +1,48 @@
+.nav-pills li a:hover {
+    background-color: #1D90F4;
+}
+.cardlink {
+    width: 100%;
+    padding: 1%;
+}
+.card-title {
+    text-align: center;
+}
+.card-body {
+    text-align: start;
+    max-width: 100%;
+}
+.row-sidebar {
+    background:#323645;
+    ;
+}
+.container-fluid-dashboard {
+    background: #282A37;
+}
+.col-auto {
+    background: #323645;
+
+}
+.cardlink {
+    background: #323645;
+}
+#pagelink {
+    background: #282A37;
+}
+#appbox {
+    background: #C3C3C3;
+}
+#dashboardmid {
+    color: #C3C3C3;
+}
+#applist {
+    background: #323645;
+    text-align: start;
+}
+#bodycard {
+    background: #C3C3C3;
+;
+}
+.full-width{
+    background: #282A37;
+}
