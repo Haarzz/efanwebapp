@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./login.css";
 import axios from 'axios';
+import localStorageKey from "../constant/localStorageKey.jsx";
 
 function Login() {
   const loginTitle = "Login";
@@ -32,6 +33,7 @@ function Login() {
       const response = await axios.post('http://localhost:4000/api/login', { username, password });
       setMessage(response.data.message);
       if (response.status === 200) {
+        localStorage.setItem(localStorageKey.JWT_TOKEN_KEY , response.data.token);
         navigate('/dashboard');
       }
     } catch (error) {

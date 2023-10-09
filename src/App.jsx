@@ -5,6 +5,7 @@ import Registration from './components/Register';
 import { useState } from 'react';
 import Production from './components/Production';
 import { useEffect } from 'react';
+import AuthMiddleware from "./routing/AuthMiddleware.jsx";
 
 function App() {  
     // need refresh untuk ngerefresh satu page
@@ -37,9 +38,20 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />} />
         <Route path="/register" element={<Registration />} />
-        <Route path="/prodmon" element={<Production />} />
+        <Route
+            path="/dashboard"
+            element={
+                <AuthMiddleware>
+                    <Dashboard toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen}/>
+                </AuthMiddleware>
+            }
+        />
+
+        <Route
+            path="/prodmon"
+            element={<AuthMiddleware><Production /></AuthMiddleware>}
+        />
       </Routes>
     </Router>
   );
