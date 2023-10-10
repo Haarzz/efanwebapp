@@ -4,3 +4,20 @@
 #prodcard {
     background: #323645
 }
+#prodbgleft {
+    background: #C3C3C3;
+}
+#prodbgright {
+    background: #07569b;
+    color: #C3C3C3;
+}
+#fonttext {
+    font-size: 104px;
+}
+#fontprodleft {
+    font-size: 55px;
+}
+#leftpadd {
+    margin-top: 16px;
+    margin-bottom: 17px;
+}
