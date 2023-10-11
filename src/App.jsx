@@ -43,14 +43,14 @@ function App() {
             path="/dashboard"
             element={
                 <AuthMiddleware>
-                    <Dashboard toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen}/>
+                    <Dashboard allModel={allTransactionData}  toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen}/>
                 </AuthMiddleware>
             }
         />
 
         <Route
             path="/prodmon"
-            element={<AuthMiddleware><Production /></AuthMiddleware>}
+            element={<AuthMiddleware><Production allModel={allTransactionData} refreshPage={refresh} /></AuthMiddleware>}
         />
       </Routes>
     </Router>

@@ -3,7 +3,16 @@ import { useEffect } from "react";
 import Sidebar from "./Sidebar";
 import Information from "./Information";
 import Help from "./Help";
+import PropTypes from "prop-types";
+
+Dashboard.propTypes = {
+  allModel: PropTypes.any,
+  refreshPage: PropTypes.func,
+};
+
 export default function Dashboard() {
+
+
   const dashboardTitle = "Dashboard";
   useEffect(() => {
     const oriTitle = document.title;

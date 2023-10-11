@@ -5,7 +5,12 @@ import axios from "axios";
 import './ModalFormInput.css';
 
 export default function ModalFormInput({ refresh }) {
-    
+  const initialSelectedGroup = "";
+  const initialSelectedModel = "";
+  const initialPlan = 1;  
+
+
+
   const groupOptions = [
     { value: "", text: "Choose Group" },
     { value: "Group A", text: "Group A" },
@@ -46,7 +51,6 @@ export default function ModalFormInput({ refresh }) {
   };
 //   ******************************************* SUBMIT FORM *********************************
   const handleSubmit = async (e) => {
-    e.preventDefault();
 
     try {
       // Send a POST request to the API using Axios
@@ -57,6 +61,10 @@ export default function ModalFormInput({ refresh }) {
       };
 
       const response = await axios.post('http://localhost:4000/formData', formData);
+
+      setSelectedGroup(initialSelectedGroup);
+      setSelectedModel(initialSelectedModel);
+      setPlan(initialPlan);
       refresh();
       // Handle the API response here (e.g., show a success message)
       console.log('API response:', response.data);
