@@ -1,31 +1,29 @@
-import Sidebar from "./Sidebar";
-import "./Production.css";
+import Sidebar from "../components/Sidebar";
+import "./MainPm.css";
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import ModelName from "../ProductionMonitoring/ModelName";
-import ProdPlan from "../ProductionMonitoring/ProdPlan";
-import Plan from "../ProductionMonitoring/Plan";
-import Actual from "../ProductionMonitoring/Actual";
-import Different from "../ProductionMonitoring/Different";
-import Efficiency from "../ProductionMonitoring/Efficiency";
+import ModelName from "./ModelName";
+import ProdPlan from "./ProdPlan";
+import Plan from "./Plan";
+import Actual from "./Actual";
+import Different from "./Different";
+import Efficiency from "./Efficiency";
 import socket from "../websocket/websocket.jsx";
-import RunModel from "../ProductionMonitoring/RunModel";
+import RunModel from "./RunModel";
 import axios from "axios";
+import ModalFormInput from "./ModalFormInput";
 
 Production.propTypes = {
   allModel: PropTypes.any,
-  refreshPage : PropTypes.func,
+  refreshPage: PropTypes.func,
 };
 
-export default function Production({allModel, refreshPage}) {
-  const [id , setModelId] = useState();
+export default function Production({ allModel, refreshPage }) {
+  const [id, setModelId] = useState();
 
   useEffect(() => {
-      socket.setModelId(
-          id,
-          refreshPage,
-      );
-  } , [id, refreshPage]);
+    socket.setModelId(id, refreshPage);
+  }, [id, refreshPage]);
 
   const model = allModel.find((model) => model.ID === id);
 
@@ -95,7 +93,7 @@ export default function Production({allModel, refreshPage}) {
               <div className="col-4">
                 <div className="row">
                   <div className="col-6">
-                  <RunModel allModel={allModel} chooseModel={(newModel) => setModelId(newModel.ID)} />
+                    <RunModel allModel={allModel} chooseModel={(newModel) => setModelId(newModel.ID)} />
                   </div>
                   <div className="col-6">
                     <button type="button" className="btn btn-success" data-bs-toggle="button" onClick={handleStartClick}>
@@ -127,25 +125,27 @@ export default function Production({allModel, refreshPage}) {
                 </div>
               </div>
               <div className="col-4 " id="prodright">
-              <Efficiency model={model} />
+                <Efficiency model={model} />
               </div>
             </div>
           </div>
         </div>
       </div>
+      <ModalFormInput refresh={refreshPage} />
     </>
   );
 }
 
 // eslint-disable-next-line no-unused-vars
-function triggerNode(modelId , refresh){
+function triggerNode(modelId, refresh) {
   if (modelId !== undefined)
-    axios.put(`http://localhost:4000/api/increment-transaction/${modelId}`) // Update with your API endpoint
-        .then(
-          // eslint-disable-next-line no-unused-vars
-          (response) => {
-            refresh();
-          }
-        )
-        .catch((error) => console.error("Error fetching data:", error));
+    axios
+      .put(`http://localhost:4000/api/increment-transaction/${modelId}`) // Update with your API endpoint
+      .then(
+        // eslint-disable-next-line no-unused-vars
+        (response) => {
+          refresh();
+        }
+      )
+      .catch((error) => console.error("Error fetching data:", error));
 }

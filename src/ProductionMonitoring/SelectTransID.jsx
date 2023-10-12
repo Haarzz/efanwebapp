@@ -23,7 +23,6 @@ export default function RunModel({ allModel , chooseModel }) {
             
           </div>
         </div>
-      </div>
     </>
   );
 }

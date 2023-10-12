@@ -41,8 +41,12 @@
 }
 #bodycard {
     background: #C3C3C3;
-;
+
 }
 .full-width{
     background: #282A37;
+}
+#imagesize {
+    width: 294px;
+    height: 160px;
 }

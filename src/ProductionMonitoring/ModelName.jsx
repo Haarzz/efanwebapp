@@ -18,7 +18,7 @@ export default function ModelName({model}) {
           <div className="card-body fs-1 fw-bolder text-end h-auto">{model && (
             <div>
               {model.modelname}
-            </div>
+            </div> 
           )}</div>
         </div>
       </div>

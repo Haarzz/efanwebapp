@@ -38,7 +38,7 @@ export default function Dashboard() {
               <div className="row row-cols-1 row-cols-md-3 g-4">
                 <div className="col">
                   <div className="card rounded-0" id="bodycard">
-                    <img href="#" src="https://i.ibb.co/gyDKrVq/painting-mountain-lake-with-mountain-background.jpg" className="card-img-top rounded-0" alt="..." id="bodycard" />
+                    <img href="#" src="https://i.ibb.co/gyDKrVq/painting-mountain-lake-with-mountain-background.jpg" className="card-img-top rounded-0" alt="..." id="imagesize" />
                     <div className="card-body" id="bodycard">
                       <a className="text-decoration-none text-dark" href="/sparepart"><h6 className="card-title">Spare Part Inventory</h6></a>
                     </div>
@@ -46,15 +46,15 @@ export default function Dashboard() {
                 </div>
                 <div className="col">
                   <div className="card rounded-0" id="bodycard">
-                    <img href="#" src="https://i.ibb.co/gyDKrVq/painting-mountain-lake-with-mountain-background.jpg" className="card-img-top rounded-0" alt="..." id="bodycard" />
+                    <img href="#" src="https://i.ibb.co/cL2WXX4/Energy-Consumption.jpg" className="card-img-top rounded-0" alt="..." id="imagesize" />
                     <div className="card-body" id="bodycard">
-                    <a className="text-decoration-none text-dark" href="http://localhost:5174/"><h6 className="card-title">Energy Consumption</h6></a>
+                    <a className="text-decoration-none text-dark" href="/energycons"><h6 className="card-title">Energy Consumption</h6></a>
                     </div>
                   </div>
                 </div>
                 <div className="col">
                   <div className="card rounded-0" id="bodycard">
-                    <img href="#" src="https://i.ibb.co/gyDKrVq/painting-mountain-lake-with-mountain-background.jpg" className="card-img-top rounded-0" alt="..." id="bodycard" />
+                    <img href="#" src="https://i.ibb.co/qjN6vZV/Production-Monitoring.jpg" className="card-img-top rounded-0" alt="..." id="imagesize" />
                     <div className="card-body" id="bodycard">
                     <a className="text-decoration-none text-dark" href="/prodmon"><h6 className="card-title">Production Monitoring</h6></a>
                     </div>
@@ -62,7 +62,7 @@ export default function Dashboard() {
                 </div>
                 <div className="col">
                   <div className="card rounded-0" id="bodycard">
-                    <img href="#" src="https://i.ibb.co/gyDKrVq/painting-mountain-lake-with-mountain-background.jpg" className="card-img-top rounded-0" alt="..." id="bodycard" />
+                    <img href="#" src="https://i.ibb.co/gyDKrVq/painting-mountain-lake-with-mountain-background.jpg" className="card-img-top rounded-0" alt="..." id="imagesize" />
                     <div className="card-body" id="bodycard">
                     <a className="text-decoration-none text-dark" href="#"><h6 className="card-title"></h6></a>
                     </div>
@@ -70,7 +70,7 @@ export default function Dashboard() {
                 </div>
                 <div className="col">
                   <div className="card rounded-0" id="bodycard">
-                    <img href="#" src="https://i.ibb.co/gyDKrVq/painting-mountain-lake-with-mountain-background.jpg" className="card-img-top rounded-0" alt="..." id="bodycard" />
+                    <img href="#" src="https://i.ibb.co/gyDKrVq/painting-mountain-lake-with-mountain-background.jpg" className="card-img-top rounded-0" alt="..." id="imagesize" />
                     <div className="card-body" id="bodycard">
                     <a className="text-decoration-none text-dark" href="#"><h6 className="card-title"></h6></a>
                     </div>
@@ -78,7 +78,7 @@ export default function Dashboard() {
                 </div>
                 <div className="col">
                   <div className="card rounded-0" id="bodycard">
-                    <img href="#" src="https://i.ibb.co/gyDKrVq/painting-mountain-lake-with-mountain-background.jpg" className="card-img-top rounded-0" alt="..." id="bodycard" />
+                    <img href="#" src="https://i.ibb.co/gyDKrVq/painting-mountain-lake-with-mountain-background.jpg" className="card-img-top rounded-0" alt="..." id="imagesize" />
                     <div className="card-body" id="bodycard">
                     <a className="text-decoration-none text-dark" href="#"><h6 className="card-title"></h6></a>
                     </div>
