@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import Sidebar from "../components/Sidebar";
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
 
 export default function MainEc() {
   const data = [

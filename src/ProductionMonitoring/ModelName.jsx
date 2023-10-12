@@ -15,11 +15,13 @@ export default function ModelName({model}) {
       </div>
       <div className="col-8">
         <div className="card" id="prodbgright">
-          <div className="card-body fs-1 fw-bolder text-end h-auto">{model && (
-            <div>
-              {model.modelname}
-            </div> 
-          )}</div>
+          <div className="card-body fs-1 fw-bolder text-end h-auto">
+            {
+              model !== undefined ? 
+                (<div>{model.modelname}</div>) :
+                '-'
+            }
+          </div>
         </div>
       </div>
     </>

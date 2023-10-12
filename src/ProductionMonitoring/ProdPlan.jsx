@@ -17,7 +17,9 @@ export default function ProdPlan({ model }) {
       <div className="col-8">
         <div className="card" id="prodbgright">
           <div className="card-body fw-bolder text-end" id="fontprodleft">
-            {model && <div>{model.plan}</div>}
+            {
+              model !== undefined ? <div>{model.plan}</div> : '-'
+            }
           </div>
         </div>
       </div>

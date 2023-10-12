@@ -22,10 +22,9 @@ export default function Different({model}) {
       <div className="col-8">
         <div className="card" id="prodbgright">
           <div className="card-body fw-bolder text-end h-auto" id="fontprodleft">
-            {model && 
-            <div>
-                {diff}
-                </div>}
+            {
+              model !== undefined ? <div>{diff}</div> : '-'
+            }
           </div>
         </div>
       </div>

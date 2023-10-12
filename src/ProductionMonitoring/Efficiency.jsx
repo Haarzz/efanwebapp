@@ -8,6 +8,8 @@ export default function Efficiency({model}) {
     let efficiency = '';
     if (model !== undefined) {
         efficiency = `${((model.result / model.plan) * 100).toFixed(2)}%`;
+    } else {
+      efficiency = '-';
     }
   return (
     <>
