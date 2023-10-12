@@ -1,8 +1,8 @@
-import "../components/Dashboard.css";
+import "./style/Dashboard.css";
 import { useEffect } from "react";
 import Sidebar from "../components/Sidebar.jsx";
-import Information from "../components/Information.jsx";
-import Help from "../components/Help.jsx";
+import Information from "./component/Information.jsx";
+import Help from "./component/Help.jsx";
 import SmartManufacturingCard from "./component/SmartManufacturingCard.jsx";
 
 export default function Dashboard() {

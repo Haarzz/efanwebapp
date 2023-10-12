@@ -14,7 +14,6 @@ function Login() {
       document.title = oriTitle;
     }
   } , []);
-  console.log('tes');
 
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
