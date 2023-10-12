@@ -7,36 +7,35 @@ import Plan from "./Plan";
 import Actual from "./Actual";
 import Different from "./Different";
 import Efficiency from "./Efficiency";
-import socket from "../websocket/websocket.jsx";
 import RunModel from "./RunModel";
 import axios from "axios";
 import ModalFormInput from "./ModalFormInput";
+import WebsocketService from "../websocket/websocket.jsx";
 
 export default function MainProductionMonitoringScreen() {
+  const socket = new WebsocketService;
   // need refresh untuk ngerefresh satu page
   const [needRefresh, setNeedRefresh] = useState(false);
 
-  // eslint-disable-next-line no-unused-vars
   const refresh = () => {
     setNeedRefresh((needRefresh) => {
       return !needRefresh;
     });
   };
-  // ini kenapa kok ditaruh disini, karena ini dipake di run model sama di tabel
-  // eslint-disable-next-line no-unused-vars
-  const [allTransactionData, setAllTransactionData] = useState([]);
+
+  const [allModel, setAllModel] = useState([]);
   useEffect(() => {
     fetch("http://localhost:4000/api/alldata") // Update with your API endpoint
         .then((response) => response.json())
-        .then((newData) => setAllTransactionData(newData))
+        .then((newData) => setAllModel(newData))
         .catch((error) => console.error("Error fetching all transaction data:", error));
   }, [needRefresh]);
 
   const [id, setModelId] = useState();
 
   useEffect(() => {
-    socket.setModelId(id, refreshPage);
-  }, [id, refreshPage]);
+    socket.setModelId(id, refresh);
+  }, [id, refresh]);
 
   const model = allModel.find((model) => model.ID === id);
 
@@ -144,7 +143,7 @@ export default function MainProductionMonitoringScreen() {
           </div>
         </div>
       </div>
-      <ModalFormInput refresh={refreshPage} />
+      <ModalFormInput refresh={refresh} />
     </>
   );
 }
