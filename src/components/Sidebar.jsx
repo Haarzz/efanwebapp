@@ -27,7 +27,7 @@ const handleLogout = () => {
         <hr className="text-secondary" />
         <ul className="nav nav-pills flex-column">
           <li className="nav-item text-light">
-            <a href="/dashboard" className="nav-link text-light" aria-current="page"> 
+            <a href="/src/Dashboard/Dashboard" className="nav-link text-light" aria-current="page">
               <span className="ms-2 bi bi-house-door-fill d-none d-sm-inline"> &nbsp;Dashboard</span>
             </a>
           </li>

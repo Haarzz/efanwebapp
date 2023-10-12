@@ -1,7 +1,6 @@
 import Sidebar from "../components/Sidebar";
 import "./MainPm.css";
 import { useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import ModelName from "./ModelName";
 import ProdPlan from "./ProdPlan";
 import Plan from "./Plan";
@@ -13,12 +12,26 @@ import RunModel from "./RunModel";
 import axios from "axios";
 import ModalFormInput from "./ModalFormInput";
 
-Production.propTypes = {
-  allModel: PropTypes.any,
-  refreshPage: PropTypes.func,
-};
+export default function MainProductionMonitoringScreen() {
+  // need refresh untuk ngerefresh satu page
+  const [needRefresh, setNeedRefresh] = useState(false);
 
-export default function Production({ allModel, refreshPage }) {
+  // eslint-disable-next-line no-unused-vars
+  const refresh = () => {
+    setNeedRefresh((needRefresh) => {
+      return !needRefresh;
+    });
+  };
+  // ini kenapa kok ditaruh disini, karena ini dipake di run model sama di tabel
+  // eslint-disable-next-line no-unused-vars
+  const [allTransactionData, setAllTransactionData] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:4000/api/alldata") // Update with your API endpoint
+        .then((response) => response.json())
+        .then((newData) => setAllTransactionData(newData))
+        .catch((error) => console.error("Error fetching all transaction data:", error));
+  }, [needRefresh]);
+
   const [id, setModelId] = useState();
 
   useEffect(() => {

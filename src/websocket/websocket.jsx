@@ -34,9 +34,4 @@ class WebsocketService {
   }
   
 }
-
-
-
-
-const websocketService = new WebsocketService();
-export default websocketService;
+export default WebsocketService;

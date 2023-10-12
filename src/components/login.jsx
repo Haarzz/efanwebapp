@@ -13,7 +13,9 @@ function Login() {
     return () => {
       document.title = oriTitle;
     }
-  })
+  } , []);
+  console.log('tes');
+
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [message, setMessage] = useState('')
@@ -58,7 +60,7 @@ function Login() {
             <input  type="text" className="form-control" onChange={(e) => setUsername(e.target.value)} placeholder="Username" value={username}></input>
           <div className="mb-2">
             <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-            <input type="password" className="form-control pb-1"placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
+            <input type="password" className="form-control pb-1" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
           </div>
           <div className="buttonlogin">
             <button type="submit" onClick={(e) => handleSubmit(e)} className="btn btn-primary rounded-pill w-50">Log in</button>
