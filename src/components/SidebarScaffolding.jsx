@@ -1,12 +1,12 @@
 import Sidebar from "./Sidebar/Sidebar.jsx";
+import {Outlet} from "react-router-dom";
 
-export default function Scaffolding({ children }){
-    console.log('ngebangun nav drawer');
+export default function SidebarScaffolding(){
     return (
     <div className="container-fluid">
         <div className="row full-width">
             <Sidebar />
-            {children}
+            <Outlet />
         </div>
     </div>
     );
