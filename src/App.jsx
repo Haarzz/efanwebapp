@@ -5,7 +5,7 @@ import Registration from "./components/Register";
 import MainPm from "./ProductionMonitoring/MainPm";
 import AuthMiddleware from "./routing/AuthMiddleware.jsx";
 import MainEc from "./EnergyConsumption/MainEc";
-import SidebarScaffolding from "./components/SidebarScaffolding.jsx";
+import SidebarScaffolding from "./components/Sidebar/SidebarScaffolding.jsx";
 
 function App() {
   return (

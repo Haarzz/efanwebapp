@@ -1,4 +1,4 @@
-import Sidebar from "./Sidebar/Sidebar.jsx";
+import Sidebar from "./Sidebar.jsx";
 import {Outlet} from "react-router-dom";
 
 export default function SidebarScaffolding(){
