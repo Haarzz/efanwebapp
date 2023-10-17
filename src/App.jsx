@@ -37,19 +37,21 @@ function App() {
                 }
             />
 
+            <Route
+                path="/prodmon"
+                element={
+                    <AuthMiddleware>
+                        <MainPm/>
+                    </AuthMiddleware>
+                }
+            />
+
 
         </Route>
 
 
 
-        <Route
-          path="/prodmon"
-          element={
-            <AuthMiddleware>
-              <MainPm/>
-            </AuthMiddleware>
-          }
-        />
+
         <Route
           path="/sparepart"
           element={

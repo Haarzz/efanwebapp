@@ -80,70 +80,66 @@ export default function MainProductionMonitoringScreen() {
   };
   return (
     <>
-      <div className="container-fluid">
-        <div className="row full-width vw-100">
-          <Sidebar />
-          <div className="col-10 pt-2" id="pagelink">
-            <div className="card" id="prodcard">
-              <div className="card-header">
-                <div className="row">
-                  <div className="col-10">
-                    <h2 className="text-center fw-bolder text-light">MOTOR ASSY 1</h2>
-                  </div>
-                  <div className="col-2" id="inputplan">
-                    <button className="btn btn-light btn-sm mt-1 text-dark fw-bolder" data-bs-toggle="modal" data-bs-target="#inputdata" disabled={!isControlsEnabled}>
-                      Input Plan
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
+      <ModalFormInput refresh={refresh} />
+      <div className="col-10 pt-2" id="pagelink">
+        <div className="card" id="prodcard">
+          <div className="card-header">
             <div className="row">
-              <div className="col-8">
-                <p className="text-light fw-bolder py-1">Date : {dateTime} </p>
+              <div className="col-10">
+                <h2 className="text-center fw-bolder text-light">MOTOR ASSY 1</h2>
               </div>
-              <div className="col-4">
-                <div className="row">
-                  <div className="col-6">
-                    <RunModel allModel={allModel} chooseModel={(newModel) => setModelId(newModel.ID)} />
-                  </div>
-                  <div className="col-6">
-                    <button type="button" className="btn btn-success" data-bs-toggle="button" onClick={handleStartClick}>
-                      Start
-                    </button>
-                    <button type="button" className="btn btn-danger ms-2 " data-bs-toggle="button" onClick={handleStopClick}>
-                      Stop
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-8" id="prodleft">
-                <div className="row m-2">
-                  <ModelName model={model} />
-                </div>
-                <div className="row m-2">
-                  <ProdPlan model={model} />
-                </div>
-                <div className="row m-2">
-                  <Plan model={model} />
-                </div>
-                <div className="row m-2">
-                  <Actual model={model} />
-                </div>
-                <div className="row m-2">
-                  <Different model={model} />
-                </div>
-              </div>
-              <div className="col-4 " id="prodright">
-                <Efficiency model={model} />
+              <div className="col-2" id="inputplan">
+                <button className="btn btn-light btn-sm mt-1 text-dark fw-bolder" data-bs-toggle="modal" data-bs-target="#inputdata" disabled={!isControlsEnabled}>
+                  Input Plan
+                </button>
               </div>
             </div>
           </div>
         </div>
+        <div className="row">
+          <div className="col-8">
+            <p className="text-light fw-bolder py-1">Date : {dateTime} </p>
+          </div>
+          <div className="col-4">
+            <div className="row">
+              <div className="col-6">
+                <RunModel allModel={allModel} chooseModel={(newModel) => setModelId(newModel.ID)} />
+              </div>
+              <div className="col-6">
+                <button type="button" className="btn btn-success" data-bs-toggle="button" onClick={handleStartClick}>
+                  Start
+                </button>
+                <button type="button" className="btn btn-danger ms-2 " data-bs-toggle="button" onClick={handleStopClick}>
+                  Stop
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-8" id="prodleft">
+            <div className="row m-2">
+              <ModelName model={model} />
+            </div>
+            <div className="row m-2">
+              <ProdPlan model={model} />
+            </div>
+            <div className="row m-2">
+              <Plan model={model} />
+            </div>
+            <div className="row m-2">
+              <Actual model={model} />
+            </div>
+            <div className="row m-2">
+              <Different model={model} />
+            </div>
+          </div>
+          <div className="col-4 " id="prodright">
+            <Efficiency model={model} />
+          </div>
+        </div>
       </div>
-      <ModalFormInput refresh={refresh} />
+
     </>
   );
 }
