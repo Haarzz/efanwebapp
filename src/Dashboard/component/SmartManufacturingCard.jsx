@@ -1,6 +1,8 @@
+import {Link} from "react-router-dom";
+
 export default function SmartManufacturingCard({ imageLink , title , href }){
     return (
-        <a className="text-decoration-none text-dark" href={href}>
+        <Link className="text-decoration-none text-dark" to={href}>
             <div className="col">
                 <div className="card rounded-0" id="bodycard">
                     <img src={imageLink} className="card-img-top rounded-0" alt="..." id="imagesize" />
@@ -9,6 +11,6 @@ export default function SmartManufacturingCard({ imageLink , title , href }){
                     </div>
                 </div>
             </div>
-        </a>
+        </Link>
     )
 }
