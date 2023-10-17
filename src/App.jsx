@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import {BrowserRouter as Router, Route, Routes, Navigate} from "react-router-dom";
 import Login from "./components/login";
 import Dashboard from "./Dashboard/Dashboard.jsx";
 import Registration from "./components/Register";
@@ -7,6 +7,7 @@ import AuthMiddleware from "./routing/AuthMiddleware.jsx";
 import MainEc from "./EnergyConsumption/MainEc";
 import MainSPI from "./SparePartInventory/MainSPI";
 import { ChakraProvider } from '@chakra-ui/react'
+import SidebarScaffolding from "./components/Sidebar/SidebarScaffolding.jsx";
 
 function App() {
   return (
@@ -16,14 +17,30 @@ function App() {
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Registration />} />
-        <Route
-          path="/dashboard"
-          element={
-            <AuthMiddleware>
-              <Dashboard />
-            </AuthMiddleware>
-          }
-        />
+
+        <Route element={<SidebarScaffolding/>}>
+            <Route
+              path="/dashboard"
+              element={
+                <AuthMiddleware>
+                  <Dashboard />
+                </AuthMiddleware>
+              }
+            />
+
+            <Route
+                path="/energycons"
+                element={
+                    <AuthMiddleware>
+                        <MainEc />
+                    </AuthMiddleware>
+                }
+            />
+
+
+        </Route>
+
+
 
         <Route
           path="/prodmon"
@@ -33,14 +50,6 @@ function App() {
             </AuthMiddleware>
           }
         />
-        <Route
-          path="/energycons"
-          element={
-            <AuthMiddleware>
-              <MainEc />
-            </AuthMiddleware>
-          }
-          />
         <Route
           path="/sparepart"
           element={
