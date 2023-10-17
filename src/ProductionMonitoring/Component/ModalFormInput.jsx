@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import axios from "axios";
-import './ModalFormInput.css';
+import '../style/ModalFormInput.css';
 
 export default function ModalFormInput({ refresh }) {
   const initialSelectedGroup = "";

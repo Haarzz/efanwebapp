@@ -32,7 +32,7 @@ export default function Dashboard() {
                 <SmartManufacturingCard
                   title={'Spare Part Inventory'}
                   imageLink={"https://i.ibb.co/gyDKrVq/painting-mountain-lake-with-mountain-background.jpg"}
-                  href={''}/>
+                  href={'/sparepart'}/>
 
                 <SmartManufacturingCard
                     title={'Energy Consumption'}

@@ -1,15 +1,15 @@
 import Sidebar from "../components/Sidebar";
-import "./MainPm.css";
+import "./style/MainPm.css";
 import { useEffect, useState } from "react";
-import ModelName from "./ModelName";
-import ProdPlan from "./ProdPlan";
-import Plan from "./Plan";
-import Actual from "./Actual";
-import Different from "./Different";
-import Efficiency from "./Efficiency";
-import RunModel from "./RunModel";
+import ModelName from "./Component/ModelName";
+import ProdPlan from "./Component/ProdPlan";
+import Plan from "./Component/Plan";
+import Actual from "./Component/Actual";
+import Different from "./Component/Different";
+import Efficiency from "./Component/Efficiency";
+import RunModel from "./Component/RunModel";
 import axios from "axios";
-import ModalFormInput from "./ModalFormInput";
+import ModalFormInput from "./Component/ModalFormInput";
 import WebsocketService from "../websocket/websocket.jsx";
 
 export default function MainProductionMonitoringScreen() {

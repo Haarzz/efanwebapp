@@ -5,9 +5,12 @@ import Registration from "./components/Register";
 import MainPm from "./ProductionMonitoring/MainPm";
 import AuthMiddleware from "./routing/AuthMiddleware.jsx";
 import MainEc from "./EnergyConsumption/MainEc";
+import MainSPI from "./SparePartInventory/MainSPI";
+import { ChakraProvider } from '@chakra-ui/react'
 
 function App() {
   return (
+    <ChakraProvider>
     <Router>
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
@@ -38,8 +41,17 @@ function App() {
             </AuthMiddleware>
           }
           />
+        <Route
+          path="/sparepart"
+          element={
+            <AuthMiddleware>
+              <MainSPI />
+            </AuthMiddleware>
+          }
+          />
       </Routes>
     </Router>
+    </ChakraProvider>
   );
 }
 
