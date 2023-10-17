@@ -15,12 +15,14 @@ export default function Dashboard() {
   });
 
   return (
-    <>
-      <div className="col-8 pt-1">
-        <h2 className="fw-bolder text-start m-2" id="dashboardmid">
+    <div className="vh-100 flex-row d-flex">
+      <div className="flex-grow-1 flex-column d-flex pt-1">
+
+        <h2 className="fw-bolder m-2" id="dashboardmid">
           DASHBOARD
         </h2>
-        <div className="card mx-2 rounded-0" style={{width: "auto",height: "auto"}} id="applist">
+
+        <div className="card mx-2 rounded-0 flex-grow-1" id="applist">
           <div className="card-header fs-5 rounded-0" id="appbox">
             Applications
           </div>
@@ -59,11 +61,11 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
-      <div className="col-2 pt-1">
+      <div className="flex-column d-flex col-2 pt-8">
         <h2 className="pt-2"> &nbsp; </h2>
         <Information />
-        <Help />
+        <Help/>
       </div>
-    </>
+    </div>
   );
 }
