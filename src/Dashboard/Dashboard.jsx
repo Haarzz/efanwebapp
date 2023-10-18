@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import Information from "./component/Information.jsx";
 import Help from "./component/Help.jsx";
 import SmartManufacturingCard from "./component/SmartManufacturingCard.jsx";
+import ColorThemes from "../themes/ColorThemes.jsx"
 
 export default function Dashboard() {
   const dashboardTitle = "Dashboard";
@@ -18,7 +19,7 @@ export default function Dashboard() {
     <div className="vh-100 flex-row d-flex">
       <div className="flex-grow-1 flex-column d-flex pt-1">
 
-        <h2 className="fw-bolder m-2" id="dashboardmid">
+        <h2 className="fw-bolder" id="dashboardmid">
           DASHBOARD
         </h2>
 
@@ -61,6 +62,7 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
+
       <div className="flex-column d-flex col-2 pt-8">
         <h2 className="pt-2"> &nbsp; </h2>
         <Information />

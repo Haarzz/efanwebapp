@@ -13,7 +13,7 @@ export default function MainEc() {
   } , []);
 
   return (
-      <div className="col-10 pt-2">
+      <div className="w-100 pt-2">
           <h2 className="fw-bolder text-start m-2" id="dashboardmid">
               ENERGY CONSUMPTIONS
           </h2>

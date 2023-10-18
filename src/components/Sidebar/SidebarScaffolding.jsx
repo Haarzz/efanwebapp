@@ -1,9 +1,10 @@
 import Sidebar from "./Sidebar.jsx";
 import {Outlet} from "react-router-dom";
+import ColorThemes from "../../themes/ColorThemes.jsx";
 
 export default function SidebarScaffolding(){
     return (
-    <div className="container-fluid">
+    <div className="container-fluid" style={{backgroundColor: ColorThemes.background}}>
         <div className="row vw-100 d-flex">
             <Sidebar />
 

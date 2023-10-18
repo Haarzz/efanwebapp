@@ -81,7 +81,7 @@ export default function MainProductionMonitoringScreen() {
   return (
     <>
       <ModalFormInput refresh={refresh} />
-      <div className="col-10 pt-2" id="pagelink">
+      <div className="w-100 pt-2" id="pagelink">
         <div className="card" id="prodcard">
           <div className="card-header">
             <div className="row">
