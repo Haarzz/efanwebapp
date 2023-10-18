@@ -19,7 +19,7 @@ export default function Dashboard() {
     <div className="vh-100 flex-row d-flex">
       <div className="flex-grow-1 flex-column d-flex pt-1">
 
-        <h2 className="fw-bolder" id="dashboardmid">
+        <h2 className="fw-bolder m-2" id="dashboardmid">
           DASHBOARD
         </h2>
 
