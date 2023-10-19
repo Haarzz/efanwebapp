@@ -11,9 +11,10 @@ import RunModel from "./Component/RunModel";
 import axios from "axios";
 import ModalFormInput from "./Component/ModalFormInput";
 import WebsocketService from "../websocket/websocket.jsx";
+import DateTime from "./Component/DateTime.jsx";
 
 export default function MainProductionMonitoringScreen() {
-  const socket = new WebsocketService;
+
   // need refresh untuk ngerefresh satu page
   const [needRefresh, setNeedRefresh] = useState(false);
 
@@ -33,9 +34,16 @@ export default function MainProductionMonitoringScreen() {
 
   const [id, setModelId] = useState();
 
+  let [socket , setSocket] = useState(null);
   useEffect(() => {
-    socket.setModelId(id, refresh);
-  }, [id, refresh]);
+    setSocket(new WebsocketService);
+    console.log('socket berhasil di inisiasi')
+  } , []);
+  
+  useEffect(() => {
+    console.log('model id ' , id , socket);
+    socket?.setModelId(id, refresh);
+  }, [id, refresh, socket]);
 
   const model = allModel.find((model) => model.ID === id);
 
@@ -48,28 +56,7 @@ export default function MainProductionMonitoringScreen() {
       document.title = oriTitle;
     };
   });
-  const [dateTime, setDateTime] = useState("");
 
-  useEffect(() => {
-    function updateDateTime() {
-      const newDate = new Date();
-      const date = newDate.getDate();
-      const month = newDate.getMonth() + 1;
-      const year = newDate.getFullYear();
-      const hours = newDate.getHours();
-      const minutes = newDate.getMinutes();
-      const seconds = newDate.getSeconds();
-      const formattedDateTime = `${date}/${month}/${year}  Time : ${hours}:${minutes}:${seconds}`;
-
-      setDateTime(formattedDateTime);
-    }
-
-    updateDateTime();
-
-    const intervalId = setInterval(updateDateTime, 1000);
-
-    return () => clearInterval(intervalId);
-  }, []);
 
   const handleStartClick = () => {
     setIsControlsEnabled(false);
@@ -98,7 +85,7 @@ export default function MainProductionMonitoringScreen() {
         </div>
         <div className="row">
           <div className="col-8">
-            <p className="text-light fw-bolder py-1">Date : {dateTime} </p>
+            <DateTime />
           </div>
           <div className="col-4">
             <div className="row">

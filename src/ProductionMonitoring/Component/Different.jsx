@@ -14,7 +14,7 @@ export default function Different({model}) {
     <>
       <div className="col-4">
         <div className="card" id="prodbgleft">
-          <div className="card-body fs-2 fw-bolder" id="leftpadd">
+          <div className="card-body fs-3 fw-bolder" id="leftpadd">
             DIFFERENT
           </div>
         </div>

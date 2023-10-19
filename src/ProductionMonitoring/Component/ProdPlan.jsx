@@ -9,7 +9,7 @@ export default function ProdPlan({ model }) {
     <>
       <div className="col-4">
         <div className="card" id="prodbgleft">
-          <div className="card-body fs-2 fw-bolder" id="leftpadd">
+          <div className="card-body fs-3 fw-bolder" id="leftpadd">
             PROD. PLAN
           </div>
         </div>
