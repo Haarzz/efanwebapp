@@ -8,6 +8,7 @@ import MainEc from "./EnergyConsumption/MainEc";
 import MainSPI from "./SparePartInventory/MainSPI";
 import { ChakraProvider } from '@chakra-ui/react'
 import SidebarScaffolding from "./components/Sidebar/SidebarScaffolding.jsx";
+import MainAcc from "./Dashboard/Account/MainAcc";
 
 function App() {
   return (
@@ -45,8 +46,14 @@ function App() {
                     </AuthMiddleware>
                 }
             />
-
-
+            <Route 
+                path="/account"
+                element={
+                    <AuthMiddleware>
+                        <MainAcc/>
+                    </AuthMiddleware>
+                }
+            />
         </Route>
 
 

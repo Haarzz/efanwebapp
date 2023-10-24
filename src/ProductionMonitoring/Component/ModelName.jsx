@@ -10,12 +10,12 @@ export default function ModelName({model}) {
     <>
       <div className="col-4">
         <div className="card" id="prodbgleft">
-          <div className="card-body fs-3 fw-bolder h-auto my-2 ">MODEL NAME</div>
+          <div className="card-body fs-4 fw-bolder h-auto my-2 ">MODEL NAME</div>
         </div>
       </div>
       <div className="col-8">
         <div className="card" id="prodbgright">
-          <div className="card-body fs-1 fw-bolder text-end h-auto">
+          <div className="card-body fs-2 fw-bolder text-end h-auto">
             {
               model !== undefined ? 
                 (<div>{model.modelname}</div>) :

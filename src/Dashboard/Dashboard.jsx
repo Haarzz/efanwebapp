@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import Information from "./component/Information.jsx";
 import Help from "./component/Help.jsx";
 import SmartManufacturingCard from "./component/SmartManufacturingCard.jsx";
-import ColorThemes from "../themes/ColorThemes.jsx"
 
 export default function Dashboard() {
   const dashboardTitle = "Dashboard";

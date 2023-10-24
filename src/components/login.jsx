@@ -20,14 +20,7 @@ function Login() {
   const [message, setMessage] = useState('')
   const navigate = useNavigate();
 
-  const handleRegister = async () => {
-    try{
-      navigate('/register');
-    }
-    catch{
-      console.log("Error Regis")
-    }
-  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -63,12 +56,6 @@ function Login() {
           </div>
           <div className="buttonlogin">
             <button type="submit" onClick={(e) => handleSubmit(e)} className="btn btn-primary rounded-pill w-50">Log in</button>
-            <h6 className="text-primary mt-3">
-                      Doesn`t Have Account? <br></br>
-                      <a className="btn btn-link w-50" onClick={handleRegister}>
-                        Sign Up
-                      </a>
-                    </h6> 
           </div>
           <p className="text-danger text-center">{message}</p>
           </div>

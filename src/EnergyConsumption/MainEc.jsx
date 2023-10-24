@@ -1,5 +1,6 @@
 import { useEffect, useState} from "react";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
+import EnergyChart from "./component/EnergyChart";
 
 export default function MainEc() {
   const [data , setData] = useState([]);
@@ -30,23 +31,7 @@ export default function MainEc() {
           </div>
           <div className="row">
               <div className="col-7">
-                  <AreaChart
-                      width={800}
-                      height={300}
-                      data={data}
-                      margin={{
-                          top: 10,
-                          right: 30,
-                          left: 0,
-                          bottom: 0,
-                      }}
-                  >
-                      <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="name" />
-                      <YAxis />
-                      <Tooltip />
-                      <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
-                  </AreaChart>
+                  <EnergyChart />
               </div>
               <div className="col-5">
                   <AreaChart

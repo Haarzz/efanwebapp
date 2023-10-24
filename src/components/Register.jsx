@@ -34,7 +34,7 @@ function Registration() {
       });
       if (response.status === 200) {
         alert("Registration successful");
-        navigate("/");
+        navigate("/account");
       } else {
         setMessage("Registration failed");
       }
@@ -42,9 +42,9 @@ function Registration() {
       setMessage("Registration failed");
     }
   };
-  const handleLogin = async () => {
+  const handleBack = async () => {
     try {
-      navigate("/login");
+      navigate("/account");
     } catch {
       console.log("Hai");
     }
@@ -69,8 +69,10 @@ function Registration() {
           </div>
         </nav>
         <div className="container d-flex justify-content-center vh-100 align-items-center">
-          <div className="card w-50 pt-5 pb-5 rounded-5 text-white" id="cardbg">
+          <div className="card w-50 pt-2 ps-2 pb-5 rounded-5 text-white" id="cardbg">
             <div className="card-body center">
+            <button className="btn btn-danger rounded-75" onClick={handleBack}> Back</button>
+
               <form>
                 <div className="cardregist">
                   <h2 className="text-primary text-center">Register User</h2>
@@ -92,12 +94,6 @@ function Registration() {
                     <button type="submit" onClick={handleRegistration} className="btn btn-primary rounded-pill w-50">
                       Register
                     </button>
-                    <h6 className="text-primary mt-3">
-                      Already Have Account?
-                      <a className="btn btn-link w-50" onClick={handleLogin}>
-                        Click Here
-                      </a>
-                    </h6>
                   </div>
                 </div>
                 <p className="text-danger text-center">{message}</p>
