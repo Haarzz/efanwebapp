@@ -9,8 +9,6 @@ export default function ModalFormInput({ refresh }) {
   const initialSelectedModel = "";
   const initialPlan = 1;  
 
-
-
   const groupOptions = [
     { value: "", text: "Choose Group" },
     { value: "Group A", text: "Group A" },

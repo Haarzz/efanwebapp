@@ -1,18 +1,16 @@
 import {BrowserRouter as Router, Route, Routes, Navigate} from "react-router-dom";
 import Login from "./components/login";
 import Dashboard from "./Dashboard/Dashboard.jsx";
-import Registration from "./components/Register";
+import Registration from "./Dashboard/Account/Register";
 import MainPm from "./ProductionMonitoring/MainPm";
 import AuthMiddleware from "./routing/AuthMiddleware.jsx";
 import MainEc from "./EnergyConsumption/MainEc";
 import MainSPI from "./SparePartInventory/MainSPI";
-import { ChakraProvider } from '@chakra-ui/react'
 import SidebarScaffolding from "./components/Sidebar/SidebarScaffolding.jsx";
 import MainAcc from "./Dashboard/Account/MainAcc";
 
 function App() {
   return (
-    <ChakraProvider>
     <Router>
       <Routes>
         <Route path="/" element={<Navigate to="/dashboard" />} />
@@ -69,7 +67,6 @@ function App() {
           />
       </Routes>
     </Router>
-    </ChakraProvider>
   );
 }
 

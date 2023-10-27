@@ -71,7 +71,7 @@ function Registration() {
         <div className="container d-flex justify-content-center vh-100 align-items-center">
           <div className="card w-50 pt-2 ps-2 pb-5 rounded-5 text-white" id="cardbg">
             <div className="card-body center">
-            <button className="btn btn-danger rounded-75" onClick={handleBack}> Back</button>
+            <button type="button" className="btn btn-danger rounded-pill ps-3 pe-3" onClick={handleBack}> Back</button>
 
               <form>
                 <div className="cardregist">

@@ -1,5 +1,17 @@
 import { useNavigate } from "react-router-dom";
+import ChangePass from "./ChangePass";
+import { useEffect } from "react";
+
 export default function MainAcc(){
+    
+    const AccountTitle = "Account";
+    useEffect(() => {
+    const oriTitle = document.title;
+    document.title = AccountTitle;
+    return () => {
+      document.title = oriTitle;
+    };
+  } , []);
     const navigate = useNavigate()
     const handleRegister = async () => {
         try{
@@ -17,14 +29,15 @@ export default function MainAcc(){
                 </h2>
                 <div className="card mx-2 rounded-0 flex-grow-1" id="applist">
                     <div className="card-header fs-5 rounded-0" id="appbox">
-                        &nbsp;
+                        Hi,{}
                     </div>
                     <div className="card-body">
-                        <div className="row row-cols-1 row-cols-md-3">
-                            <div className="col">
-                            <button className="btn btn-secondary" onClick={handleRegister}> Register New Account</button>
+                        <div className="row">
+                            <div className="col-12 pb-2">
+                            <button className="btn btn-secondary w-25" onClick={handleRegister}> Register New Account </button>
                             </div>
                         </div>
+                            <ChangePass />
                     </div>
                 </div>
             </div>

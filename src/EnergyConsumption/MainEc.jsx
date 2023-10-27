@@ -3,6 +3,7 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts"
 import EnergyChart from "./component/EnergyChart";
 
 export default function MainEc() {
+  // eslint-disable-next-line no-unused-vars
   const [data , setData] = useState([]);
   const EnergyTitle = "Energy Consumptions";
   useEffect(() => {

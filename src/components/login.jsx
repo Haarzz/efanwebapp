@@ -26,6 +26,7 @@ function Login() {
     try {
       const response = await axios.post('http://localhost:4000/api/login', { username, password });
       setMessage(response.data.message);
+      console.log(response.data.nama);
       if (response.status === 200) {
         localStorage.setItem(localStorageKey.JWT_TOKEN_KEY , response.data.token);
         navigate('/dashboard');
