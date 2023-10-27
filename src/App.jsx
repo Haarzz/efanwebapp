@@ -1,4 +1,4 @@
-import {BrowserRouter as Router, Route, Routes, Navigate} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import Login from "./components/login";
 import Dashboard from "./Dashboard/Dashboard.jsx";
 import Registration from "./Dashboard/Account/Register";
@@ -8,54 +8,55 @@ import MainEc from "./EnergyConsumption/MainEc";
 import MainSPI from "./SparePartInventory/MainSPI";
 import SidebarScaffolding from "./components/Sidebar/SidebarScaffolding.jsx";
 import MainAcc from "./Dashboard/Account/MainAcc";
+import { LoginContext } from "./components/CreateContext";
+import { useState } from "react";
 
 function App() {
+
+  const [user, setUser] = useState({username: "default-username"});
   return (
+    <LoginContext.Provider value={{ user, setUser }}>
     <Router>
       <Routes>
         <Route path="/" element={<Navigate to="/dashboard" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Registration />} />
+        <Route element={<SidebarScaffolding />}>
+          <Route
+            path="/dashboard"
+            element={
+              <AuthMiddleware>
+                <Dashboard />
+              </AuthMiddleware>
+            }
+          />
 
-        <Route element={<SidebarScaffolding/>}>
-            <Route
-              path="/dashboard"
-              element={
-                <AuthMiddleware>
-                  <Dashboard />
-                </AuthMiddleware>
-              }
-            />
+          <Route
+            path="/energycons"
+            element={
+              <AuthMiddleware>
+                <MainEc />
+              </AuthMiddleware>
+            }
+          />
 
-            <Route
-                path="/energycons"
-                element={
-                    <AuthMiddleware>
-                        <MainEc />
-                    </AuthMiddleware>
-                }
-            />
-
-            <Route
-                path="/prodmon"
-                element={
-                    <AuthMiddleware>
-                        <MainPm/>
-                    </AuthMiddleware>
-                }
-            />
-            <Route 
-                path="/account"
-                element={
-                    <AuthMiddleware>
-                        <MainAcc/>
-                    </AuthMiddleware>
-                }
-            />
+          <Route
+            path="/prodmon"
+            element={
+              <AuthMiddleware>
+                <MainPm />
+              </AuthMiddleware>
+            }
+          />
+          <Route
+            path="/account"
+            element={
+              <AuthMiddleware>
+                  <MainAcc />
+              </AuthMiddleware>
+            }
+          />
         </Route>
-
-
-
 
         <Route
           path="/sparepart"
@@ -64,9 +65,10 @@ function App() {
               <MainSPI />
             </AuthMiddleware>
           }
-          />
+        />
       </Routes>
     </Router>
+    </LoginContext.Provider>
   );
 }
 

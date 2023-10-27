@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom";
 import "./login.css";
 import axios from 'axios';
 import localStorageKey from "../constant/localStorageKey.jsx";
+import { useContext } from "react";
+import { LoginContext } from "./CreateContext";
+
 
 function Login() {
   const loginTitle = "Login";
@@ -19,16 +22,19 @@ function Login() {
   const [password, setPassword] = useState('')
   const [message, setMessage] = useState('')
   const navigate = useNavigate();
-
+  const loginContext = useContext(LoginContext);
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:4000/api/login', { username, password });
       setMessage(response.data.message);
-      console.log(response.data.nama);
       if (response.status === 200) {
         localStorage.setItem(localStorageKey.JWT_TOKEN_KEY , response.data.token);
+        loginContext.setUser(() => {
+          return {username, userprofile: response.data.userprofile}
+        });
         navigate('/dashboard');
       }
     } catch (error) {

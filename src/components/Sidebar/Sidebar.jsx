@@ -11,6 +11,7 @@ export default function Sidebar() {
   const handleLogout = () => {
     try {
       localStorage.setItem(localStorageKey.JWT_TOKEN_KEY , null);
+      localStorage.setItem(localStorageKey.USER_PROFILE , null);
       navigate("/login");
     } catch {
       console.log("Error Logout");
