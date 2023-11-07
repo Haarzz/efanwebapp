@@ -1,32 +1,33 @@
 import axios from "axios";
 import { useState } from "react";
 import "../style/ChangePass.css";
+import { useUser } from "../../Contexts/UserContext";
 
 export default function ChangePass() {
-    const [username, setUsername] = useState("");
+    const { user } = useUser();
     const [oldPassword, setOldPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [message, setMessage] = useState("");
+    const [okMessage, setOkMessage] = useState("");
 
     const handleChangePassword = async () => {
         const refresh = () => window.location.reload(true)
         try {
         const response = await axios.post("http://localhost:4000/api/change-password", {
-            username,
+            username : user,
             oldPassword,
             newPassword,
         }); 
         setMessage(response.data.message);
          if (response.status === 200) {
-            refresh();
+            setOkMessage("Succsessfully Changed Password. Redirecting...")
+            setTimeout(() => {refresh()} , 2000)
+            
           }
         } catch (error) {
           setMessage("Error While Changing the Password. Please Try Again");
         }
       };
-  const handleUsernameChange = () => {
-    setMessage("");
-  };
   const handleOldPasswordChange = () => {
     setMessage("");
   };
@@ -50,7 +51,7 @@ export default function ChangePass() {
             <div className="modal-body" id="bodypass">
               <div className="row">
                 <div className="col-12 pb-2">
-                  <input className="form-control" type="text" placeholder="Username" value={username} onChange={(e) => {setUsername(e.target.value);handleUsernameChange()}} /> <br />
+                  <input className="form-control" type="text" placeholder="Username" value={user} disabled /> <br />
                 </div>
                 <div className="col-12 pb-2">
                   <input className="form-control" type="password" placeholder="Old Password" value={oldPassword} onChange={(e) => {setOldPassword(e.target.value);handleOldPasswordChange()}} />
@@ -68,6 +69,7 @@ export default function ChangePass() {
                 Save changes
               </button>
               <p className="text-danger">{message}</p>
+              <p className="text-success">{okMessage}</p>
             </div>
           </div>
         </div>

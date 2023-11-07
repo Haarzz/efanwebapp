@@ -49,7 +49,7 @@ export default function ModalFormInput({ refresh }) {
   };
 //   ******************************************* SUBMIT FORM *********************************
   const handleSubmit = async (e) => {
-
+    e.preventDefault();
     try {
       // Send a POST request to the API using Axios
       const formData = {
@@ -59,13 +59,13 @@ export default function ModalFormInput({ refresh }) {
       };
 
       const response = await axios.post('http://localhost:4000/formData', formData);
-
+      console.log('API response:', response.data);
       setSelectedGroup(initialSelectedGroup);
       setSelectedModel(initialSelectedModel);
       setPlan(initialPlan);
       refresh();
       // Handle the API response here (e.g., show a success message)
-      console.log('API response:', response.data);
+      
     } catch (error) {
       // Handle errors (e.g., show an error message)
       console.error('Error:', error);

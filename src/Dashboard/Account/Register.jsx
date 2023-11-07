@@ -15,6 +15,7 @@ function Registration() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState("");
+  const [sucsessMessage, setSucsessMessage] = useState("");
   const navigate = useNavigate();
 
   const handleRegistration = async (e) => {
@@ -33,8 +34,9 @@ function Registration() {
         password,
       });
       if (response.status === 200) {
-        alert("Registration successful");
-        navigate("/account");
+        setSucsessMessage("Registration successful");
+        setTimeout(() => navigate("/account") , 3000);
+        
       } else {
         setMessage("Registration failed");
       }
@@ -97,6 +99,7 @@ function Registration() {
                   </div>
                 </div>
                 <p className="text-danger text-center">{message}</p>
+                <p className="text-success text-center">{sucsessMessage}</p>
               </form>
             </div>
           </div>

@@ -17,7 +17,6 @@ export default function Dashboard() {
   return (
     <div className="vh-100 flex-row d-flex">
       <div className="flex-grow-1 flex-column d-flex pt-1">
-
         <h2 className="fw-bolder m-2" id="dashboardmid">
           DASHBOARD
         </h2>

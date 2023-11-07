@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import ChangePass from "./ChangePass";
-import { useContext, useEffect } from "react";
-import { LoginContext } from "../../components/CreateContext";
+import { useEffect } from "react";
 import "./style/style.css";
+import { useUser } from "../../Contexts/UserContext";
 
 export default function MainAcc() {
-  const loginContext = useContext(LoginContext)
+  const { user } = useUser();
   const AccountTitle = "Account";
   useEffect(() => {
     const oriTitle = document.title;
@@ -30,7 +30,7 @@ export default function MainAcc() {
         </h2>
         <div className="card mx-2 rounded-0 flex-grow-1" id="applist">
           <div className="card-header fs-5 rounded-0" id="appbox">
-            <div className="text-uppercase fw-bolder"> Hi, {loginContext.user.username}</div>
+            &nbsp;
           </div>
           <div className="card-body text-center">
             <div className="row">
@@ -38,7 +38,7 @@ export default function MainAcc() {
                 <h1 className="bi bi-person-circle text-light" id="imageprofile"></h1>
               </div>
               <div className="col-12">
-                <h2 className="text-light fw-bolder pt-2 pb-4">{loginContext.user.userprofile}</h2>
+                <h2 className="text-light fw-bolder pt-2 pb-4 text-uppercase">{user}</h2>
               </div>
               <div className="col-12 pb-2">
                 <button className="btn btn-secondary w-25" onClick={handleRegister}>
