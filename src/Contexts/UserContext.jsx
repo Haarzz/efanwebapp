@@ -1,6 +1,5 @@
 import { createContext, useContext, useState, useCallback, useEffect } from "react";
 import localStorageKey from "../constant/localStorageKey";
-import { jwtDecode } from "jwt-decode";
 
 const UserContext = createContext();
 

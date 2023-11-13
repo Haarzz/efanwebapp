@@ -11,12 +11,13 @@ import axios from "axios";
 import ModalFormInput from "./Component/ModalFormInput";
 import WebsocketService from "../websocket/websocket.jsx";
 import DateTime from "./Component/DateTime.jsx";
+import { useUser } from "../Contexts/UserContext.jsx";
 
 export default function MainProductionMonitoringScreen() {
 
   // need refresh untuk ngerefresh satu page
   const [needRefresh, setNeedRefresh] = useState(false);
-
+  const { user } = useUser();
   const refresh = () => {
     setNeedRefresh((needRefresh) => {
       return !needRefresh;
@@ -25,10 +26,7 @@ export default function MainProductionMonitoringScreen() {
 
   const [allModel, setAllModel] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:4000/api/alldata") // Update with your API endpoint
-        .then((response) => response.json())
-        .then((newData) => setAllModel(newData))
-        .catch((error) => console.error("Error fetching all transaction data:", error));
+    axios.get(`http://localhost:4000/api/alldata/${user}`)
   }, [needRefresh]);
 
   const [id, setModelId] = useState();

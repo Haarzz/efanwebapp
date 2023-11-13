@@ -52,13 +52,11 @@ export default function ModalFormInput({ refresh }) {
     e.preventDefault();
     try {
       // Send a POST request to the API using Axios
-      const formData = {
+      const response = await axios.post('http://localhost:4000/formData/', {
         group: selectedGroup,
-        model: selectedModel,
-        plan: plan,
-      };
-
-      const response = await axios.post('http://localhost:4000/formData', formData);
+        model : selectedModel,
+        plan: plan
+      });
       console.log('API response:', response.data);
       setSelectedGroup(initialSelectedGroup);
       setSelectedModel(initialSelectedModel);

@@ -22,6 +22,13 @@ export default function MainAcc() {
       console.log("Error Regist");
     }
   };
+  const handleAdmin = async () => {
+    try {
+      navigate("/efanadmin");
+    } catch (error){
+    console.log(error);
+    }
+  };
   return (
     <div className="vh-100 flex-row d-flex">
       <div className="flex-grow-1 flex-column d-flex pt-1">
@@ -41,11 +48,15 @@ export default function MainAcc() {
                 <h2 className="text-light fw-bolder pt-2 pb-4 text-uppercase">{user}</h2>
               </div>
               <div className="col-12 pb-2">
-                <button className="btn btn-secondary w-25" onClick={handleRegister}>
+                {
+                  user === "admin" ?
+                <button className="btn btn-secondary w-25" onClick={handleAdmin}>
                   {" "}
-                  Register New Account{" "}
-                </button>
+                  Admin Page{" "}
+                </button> : undefined
+                }
               </div>
+              
             </div>
             <ChangePass />
           </div>

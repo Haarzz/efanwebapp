@@ -22,7 +22,6 @@ export default function ChangePass() {
          if (response.status === 200) {
             setOkMessage("Succsessfully Changed Password. Redirecting...")
             setTimeout(() => {refresh()} , 2000)
-            
           }
         } catch (error) {
           setMessage("Error While Changing the Password. Please Try Again");

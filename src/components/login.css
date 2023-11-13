@@ -1,6 +1,8 @@
 .loginbg {
     background: #282A37;
-    ;
+}
+#bgadmin {
+    background: #282A37;
 }
 .navbar {
     font-weight: bold;

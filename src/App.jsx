@@ -8,6 +8,7 @@ import MainEc from "./EnergyConsumption/MainEc";
 import MainSPI from "./SparePartInventory/MainSPI";
 import SidebarScaffolding from "./components/Sidebar/SidebarScaffolding.jsx";
 import MainAcc from "./Dashboard/Account/MainAcc";
+import MainAdmin from "./AdminPage/MainAdmin.jsx";
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
         <Route path="/login" element={<Login />} />
           <Route path="/" element={<Navigate to="/dashboard" />} />
           <Route path="/register" element={<Registration />} />
+          <Route path="/efanadmin" element={<MainAdmin />} />
           
           <Route element={<SidebarScaffolding />}>
             <Route
