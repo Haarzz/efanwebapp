@@ -9,62 +9,67 @@ import MainSPI from "./SparePartInventory/MainSPI";
 import SidebarScaffolding from "./components/Sidebar/SidebarScaffolding.jsx";
 import MainAcc from "./Dashboard/Account/MainAcc";
 import MainAdmin from "./AdminPage/MainAdmin.jsx";
+import { WebsocketProvider } from "./Contexts/WebsocketProvider.jsx";
 
 function App() {
-
   return (
     <>
-    <Router>
-      <Routes>
-        <Route path="/login" element={<Login />} />
+      <Router>
+        <Routes>
+          <Route path="/login" element={<Login />} />
           <Route path="/" element={<Navigate to="/dashboard" />} />
           <Route path="/register" element={<Registration />} />
           <Route path="/efanadmin" element={<MainAdmin />} />
-          
+
           <Route element={<SidebarScaffolding />}>
             <Route
               path="/dashboard"
               element={
-              <AuthMiddleware>
-              <Dashboard />
-              </AuthMiddleware>
-            }
+                <AuthMiddleware>
+                  <Dashboard />
+                </AuthMiddleware>
+              }
             />
 
             <Route
               path="/energycons"
               element={
-              <AuthMiddleware>
-              <MainEc />
-              </AuthMiddleware>}
+                <AuthMiddleware>
+                  <MainEc />
+                </AuthMiddleware>
+              }
             />
 
             <Route
               path="/prodmon"
               element={
-              <AuthMiddleware>
-              <MainPm />
-              </AuthMiddleware>}
+                <AuthMiddleware>
+                  <WebsocketProvider>
+                    <MainPm />
+                  </WebsocketProvider>
+                </AuthMiddleware>
+              }
             />
             <Route
               path="/account"
               element={
-              <AuthMiddleware>
-              <MainAcc />
-              </AuthMiddleware>}
+                <AuthMiddleware>
+                  <MainAcc />
+                </AuthMiddleware>
+              }
             />
           </Route>
 
           <Route
             path="/sparepart"
             element={
-            <AuthMiddleware>
-            <MainSPI />
-            </AuthMiddleware>}
+              <AuthMiddleware>
+                <MainSPI />
+              </AuthMiddleware>
+            }
           />
-        
-      </Routes>
-    </Router>
+        </Routes>
+      </Router>
     </>
   );
 }

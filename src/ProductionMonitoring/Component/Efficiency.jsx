@@ -6,7 +6,7 @@ Efficiency.propTypes = {
 
 export default function Efficiency({ transaction }) {
     let efficiency = '';
-    if (transaction !== undefined) {
+    if (transaction != undefined) {
         efficiency = `${((transaction.actual / transaction.plan) * 100).toFixed(2)}%`;
     } else {
       efficiency = '-';

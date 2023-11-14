@@ -1,6 +1,7 @@
 import { useEffect , useState } from "react";
 import { useUser } from "../Contexts/UserContext";
 import MainPmRepository from "./MainPmRepository";
+import { useWebsocket } from "../Contexts/WebsocketProvider";
 export default function useMainPmViewModel() {
   useEffect(() => {
     const prodTitle = "Production Monitoring";
@@ -20,6 +21,16 @@ export default function useMainPmViewModel() {
   };
 
   const [selectedArduino, setSelectedArduino] = useState();
+  const websocketService = useWebsocket();
+  useEffect(() => {
+    console.log("USE EFFECT JALAN " , selectedArduino , websocketService)
+    if (selectedArduino != undefined){
+        websocketService.on(selectedArduino.nama_arduino , (message) => {
+            console.log(`dapat pesan dari arduino ${selectedArduino.nama_arduino} ` , message)
+            refresh();
+        });
+    }
+  } , [selectedArduino])
 
   const [getData, setGetData] = useState({
     allModel: [],
@@ -38,18 +49,6 @@ export default function useMainPmViewModel() {
     }
   }, [user]);
 
-  // let [socket , setSocket] = useState(null);
-  // useEffect(() => {
-  //   setSocket(new WebsocketService);
-  //   console.log('socket berhasil di inisiasi')
-  // } , []);
-
-  // useEffect(() => {
-  //   console.log('model id ' , id , socket);
-  //   socket?.setModelId(id, refresh);
-  // }, [id, refresh, socket]);
-
-  const selectedArduinoName = getData.allArduino.find((arduino) => arduino.nama_arduino === selectedArduino?.nama_arduino);
 
   const [isControlsEnabled, setIsControlsEnabled] = useState(true);
 
