@@ -7,7 +7,6 @@ RunArduino.propTypes = {
   };
 
 export default function RunArduino({allArduino , chooseArduino}) {
-  console.log(allArduino)
   return (
     <>
       <Select options={allArduino} 

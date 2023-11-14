@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "../style/ModalFormInput.css";
 
-export default function ModalFormInput({ refresh , mainPmData }) {
+export default function ModalFormInput({ mainPmData }) {
 
   const initialSelectedGroup = mainPmData.allGroup[0];
   const initialSelectedModel = mainPmData.allModel[0];
@@ -23,17 +23,6 @@ export default function ModalFormInput({ refresh , mainPmData }) {
   const [selectedModel, setSelectedModel] = useState(initialSelectedModel);
   const [selectedArduino, setSelectedArduino] = useState(initialSelectedArduino);
   const [plan, setPlan] = useState(initialPlan);
-  const [dismissTarget, setDismissTarget] = useState("");
-
-  useEffect(() => {
-    // kalo ada yang undefined, buat dismiss targetnya kosong
-    // artinya bakal gak ke dismiss kalo submit
-    if (selectedGroup === undefined || selectedModel === undefined) {
-      setDismissTarget((_) => "");
-    } else {
-      setDismissTarget((_) => "modal");
-    }
-  }, [selectedGroup, selectedModel]);
 
   const handleGroupChange = (event) => {
     setSelectedGroup(groupOptions.find(group => group .group_name == event.target.value));
@@ -64,7 +53,7 @@ export default function ModalFormInput({ refresh , mainPmData }) {
       setSelectedModel(initialSelectedModel);
       setSelectedArduino(initialSelectedArduino);
       setPlan(initialPlan);
-      refresh();
+      window.location.reload(true)
     } catch (error) {
       console.error("Error:", error);
     }
@@ -127,7 +116,7 @@ export default function ModalFormInput({ refresh , mainPmData }) {
                   </div>
                 </div>
                 <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-                  <button type="submit" id="submitButton" className="btn btn-primary mt-2" data-bs-dismiss={dismissTarget}>
+                  <button type="submit" id="submitButton" className="btn btn-primary mt-2">
                     Submit
                   </button>
                 </div>

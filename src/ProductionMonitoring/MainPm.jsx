@@ -13,8 +13,6 @@ import useMainPmViewModel from "./MainPmViewModel.jsx";
 
 export default function MainProductionMonitoringScreen() {
   const viewModel = useMainPmViewModel();
-  console.log("SELECTED ARDUINO " , viewModel.selectedArduino)
-  console.log("ASSIGNED TRANSACTION " , viewModel.selectedArduino?.assigned_transactionId)
 
   return (
     <>
