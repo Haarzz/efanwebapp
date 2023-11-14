@@ -16,7 +16,7 @@ export default function MainProductionMonitoringScreen() {
 
   return (
     <>
-      <ModalFormInput refresh={viewModel.refresh} mainPmData={viewModel.getData}/>
+      <ModalFormInput mainPmData={viewModel.getData}/>
       <div className="w-100 pt-2" id="pagelink">
         <div className="card" id="prodcard">
           <div className="card-header">
@@ -80,18 +80,4 @@ export default function MainProductionMonitoringScreen() {
 
     </>
   );
-}
-
-// eslint-disable-next-line no-unused-vars
-function triggerNode(modelId, refresh) {
-  if (modelId !== undefined)
-    axios
-      .put(`http://localhost:4000/api/increment-transaction/${modelId}`) // Update with your API endpoint
-      .then(
-        // eslint-disable-next-line no-unused-vars
-        (response) => {
-          refresh();
-        }
-      )
-      .catch((error) => console.error("Error fetching data:", error));
 }

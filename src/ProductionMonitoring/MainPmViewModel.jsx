@@ -12,31 +12,26 @@ export default function useMainPmViewModel() {
     };
   }, []);
 
-  // need refresh untuk ngerefresh satu page
-  const [needRefresh, setNeedRefresh] = useState(false);
-  const refresh = () => {
-    setNeedRefresh((needRefresh) => {
-      return !needRefresh;
-    });
-  };
-
   const [selectedArduino, setSelectedArduino] = useState();
+
   const websocketService = useWebsocket();
-  useEffect(() => {
-    console.log("USE EFFECT JALAN " , selectedArduino , websocketService)
-    if (selectedArduino != undefined){
-        websocketService.on(selectedArduino.nama_arduino , (message) => {
-            console.log(`dapat pesan dari arduino ${selectedArduino.nama_arduino} ` , message)
-            refresh();
-        });
-    }
-  } , [selectedArduino])
 
   const [getData, setGetData] = useState({
     allModel: [],
     allGroup: [],
     allArduino: [],
   });
+
+  useEffect(() => {
+    console.log("USE EFFECT JALAN " , selectedArduino , websocketService)
+    if (selectedArduino != undefined){
+        websocketService.on(selectedArduino.nama_arduino , (message) => {
+            console.log(`dapat pesan dari arduino ${selectedArduino.nama_arduino} ` , message)
+            setGetData({...getData , allArduino : message.allArduino})
+            setSelectedArduino(message.allArduino.find(arduino => arduino.nama_arduino == selectedArduino.nama_arduino))
+        });
+    }
+  } , [selectedArduino])
   
   const { user } = useUser();
   useEffect(() => {
@@ -61,7 +56,6 @@ export default function useMainPmViewModel() {
   };
 
   return {
-    refresh,
     handleStartClick,
     handleStopClick,
     isControlsEnabled,

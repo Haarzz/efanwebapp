@@ -13,11 +13,15 @@ class WebsocketService {
   }
 
   on(namaArduino , subscribeFuntion){
+    if (this.#previousNamaArduino == namaArduino)
+      return;
+
     console.log(`ngecoba subscribe ${namaArduino}`)
-    if (this.#previousNamaArduino != undefined && this.#previousNamaArduino != namaArduino){
+    if (this.#previousNamaArduino != undefined){
       this.#socket.removeListener(this.#previousNamaArduino);
     }
 
+    this.#previousNamaArduino = namaArduino;
     this.#socket.on(namaArduino , subscribeFuntion)
   }
   

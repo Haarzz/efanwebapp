@@ -24,6 +24,8 @@ export default function ModalFormInput({ mainPmData }) {
   const [selectedArduino, setSelectedArduino] = useState(initialSelectedArduino);
   const [plan, setPlan] = useState(initialPlan);
 
+  console.log('ARDUINO OPTIONS : ' , arduinoOptions)
+
   const handleGroupChange = (event) => {
     setSelectedGroup(groupOptions.find(group => group .group_name == event.target.value));
   };
