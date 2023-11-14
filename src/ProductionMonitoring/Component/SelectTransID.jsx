@@ -1,10 +1,11 @@
 import PropTypes from "prop-types";
 import Select from 'react-select';
 
-RunModel.propTypes = {
-  allModel: PropTypes.any,
-  chooseModel: PropTypes.func,
+RunArduino.propTypes = {
+  allArduino: PropTypes.any,
+  chooseArduino: PropTypes.func,
 };
+
 
 export default function RunModel({ allModel , chooseModel }) {
   return (

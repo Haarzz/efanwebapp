@@ -8,7 +8,7 @@ Different.propTypes = {
 export default function Different({ transaction }) {
   let diff = '';
   if (transaction != undefined) {
-    diff = `${transaction.result - transaction.plan}`;
+    diff = `${transaction.actual - transaction.plan}`;
   }
   return (
     <>

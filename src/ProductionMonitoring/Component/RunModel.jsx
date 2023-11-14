@@ -7,9 +7,13 @@ RunArduino.propTypes = {
   };
 
 export default function RunArduino({allArduino , chooseArduino}) {
+  console.log(allArduino)
   return (
     <>
-      <Select options={allArduino} getOptionLabel={(arduino) => `${arduino.modelname}`} onChange={chooseArduino} isSearchable={false} />
+      <Select options={allArduino} 
+        getOptionLabel={(arduino) => `${arduino.nama_arduino}`} 
+        onChange={chooseArduino} 
+        isSearchable={false} />
     </>
   );
 }

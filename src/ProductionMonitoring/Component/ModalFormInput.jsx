@@ -1,40 +1,30 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import "../style/ModalFormInput.css";
-import { useUser } from "../../Contexts/UserContext";
 
-export default function ModalFormInput({ refresh }) {
-  const [getData, setGetData] = useState({
-    allModel: [],
-    allGroup: [],
-    allArduino: [],
-  });
-  const { user } = useUser();
+export default function ModalFormInput({ refresh , mainPmData }) {
+
+  const initialSelectedGroup = mainPmData.allGroup[0];
+  const initialSelectedModel = mainPmData.allModel[0];
+  const initialSelectedArduino = mainPmData.allArduino[0];
   useEffect(() => {
-    if (user != undefined && user != null) {
-      axios
-        .get(`http://localhost:4000/api/get-Data/${user}`)
-        .then((response) => {
-          setGetData(response.data);
-        })
-        .catch((err) => console.log(err));
-    }
-  }, [user]);
-  const initialSelectedGroup = "";
-  const initialSelectedModel = "";
-  const initialSelectedArduino = "";
+    setSelectedGroup(initialSelectedGroup);
+    setSelectedModel(initialSelectedModel);
+    setSelectedArduino(initialSelectedArduino);
+  } , [mainPmData])
   const initialPlan = 1;
 
-  const groupOptions = getData.allGroup;
-  const modelOptions = getData.allModel;
-  const arduinoOptions = getData.allArduino;
-  const [selectedGroup, setSelectedGroup] = useState();
-  const [selectedModel, setSelectedModel] = useState();
-  const [selectedArduino, setSelectedArduino] = useState();
-  const [plan, setPlan] = useState(1);
+  const groupOptions = mainPmData.allGroup;
+  const modelOptions = mainPmData.allModel;
+  const arduinoOptions = mainPmData.allArduino;
+  const [selectedGroup, setSelectedGroup] = useState(initialSelectedGroup);
+  const [selectedModel, setSelectedModel] = useState(initialSelectedModel);
+  const [selectedArduino, setSelectedArduino] = useState(initialSelectedArduino);
+  const [plan, setPlan] = useState(initialPlan);
   const [dismissTarget, setDismissTarget] = useState("");
+
   useEffect(() => {
     // kalo ada yang undefined, buat dismiss targetnya kosong
     // artinya bakal gak ke dismiss kalo submit
@@ -46,27 +36,28 @@ export default function ModalFormInput({ refresh }) {
   }, [selectedGroup, selectedModel]);
 
   const handleGroupChange = (event) => {
-    setSelectedGroup(event.target.value);
+    setSelectedGroup(groupOptions.find(group => group .group_name == event.target.value));
   };
   const handleModelChange = (event) => {
-    setSelectedModel(event.target.value);
+    setSelectedModel(modelOptions.find(model => model.model_name == event.target.value));
   };
   const handlePlanChange = (event) => {
     setPlan(event.target.value);
   };
   const handleArduinoChange = (event) => {
-    setSelectedArduino(event.target.value);
+    setSelectedArduino(arduinoOptions.find(arduino => arduino.nama_arduino == event.target.value));
   };
   //   ******************************************* SUBMIT FORM *********************************
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       // Send a POST request to the API using Axios
+      console.log('GROUP PAS NGESUBMIT ' , selectedGroup , '   ' , selectedGroup?.id)
       const response = await axios.post("http://localhost:4000/formData/", {
-        group_id: groupOptions.find((option) => option.group_name === selectedGroup)?.id,
-        model_id: modelOptions.find((option) => option.model_name === selectedModel)?.id,
+        group_id: selectedGroup?.id,
+        model_id: selectedModel?.id,
         plan: plan,
-        arduino : selectedArduino,
+        arduino : selectedArduino?.nama_arduino,
       });
       console.log("API response:", response.data);
       setSelectedGroup(initialSelectedGroup);
@@ -100,7 +91,7 @@ export default function ModalFormInput({ refresh }) {
                 <label className="text-light" htmlFor="groupSelect">
                   Group
                 </label>
-                <select name="group" value={selectedGroup} onChange={handleGroupChange} id="groupSelect" className="form-select m-1 bg-secondary text-light" aria-label="Default select example" required>
+                <select name="group" value={selectedGroup?.group_name} onChange={handleGroupChange} id="groupSelect" className="form-select m-1 bg-secondary text-light" aria-label="Default select example" required>
                   {groupOptions?.map((option) => (
                     <option key={option.id} value={option.group_name}>
                       {`${option.group_name} (ID: ${option.id})`}
@@ -110,7 +101,7 @@ export default function ModalFormInput({ refresh }) {
                 <label className="text-light mt-1" htmlFor="modelSelect">
                   Model
                 </label>
-                <select value={selectedModel} onChange={handleModelChange} className="form-select m-1 bg-secondary text-light" id="modelSelect" aria-label="Default select example" required>
+                <select value={selectedModel?.model_name} onChange={handleModelChange} className="form-select m-1 bg-secondary text-light" id="modelSelect" aria-label="Default select example" required>
                   {modelOptions?.map((options) => (
                     <option key={options.id} value={options.model_name}>
                       {`${options.model_name} (ID: ${options.id})`}
@@ -120,7 +111,7 @@ export default function ModalFormInput({ refresh }) {
                 <label className="text-light mt-1" htmlFor="arduinoSelect">
                   Select Line
                 </label>
-                <select value={selectedArduino} onChange={handleArduinoChange} className="form-select m-1 bg-secondary text-light" id="arduinoSelect" aria-label="Default select example" required>
+                <select value={selectedArduino?.nama_arduino} onChange={handleArduinoChange} className="form-select m-1 bg-secondary text-light" id="arduinoSelect" aria-label="Default select example" required>
                   {arduinoOptions?.map((options) => (
                     <option key={options.nama_arduino} value={options.nama_arduino}>
                       {`${options.nama_arduino}`}
