@@ -1,15 +1,15 @@
 import Select from "react-select";
 import PropTypes from "prop-types";
 
-RunModel.propTypes = {
-    allModel: PropTypes.any,
-    chooseModel: PropTypes.func,
+RunArduino.propTypes = {
+    allArduino: PropTypes.any,
+    chooseArduino: PropTypes.func,
   };
 
-export default function RunModel({allModel , chooseModel}) {
+export default function RunArduino({allArduino , chooseArduino}) {
   return (
     <>
-      <Select options={allModel} getOptionLabel={(model) => `${model.modelname} (${model.ID})`} onChange={chooseModel} isSearchable={false} />
+      <Select options={allArduino} getOptionLabel={(arduino) => `${arduino.modelname}`} onChange={chooseArduino} isSearchable={false} />
     </>
   );
 }

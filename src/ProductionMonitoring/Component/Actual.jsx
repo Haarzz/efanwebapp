@@ -1,11 +1,11 @@
 import PropTypes from "prop-types";
 
 Actual.propTypes = {
-  model: PropTypes.any,
+  actual: PropTypes.any,
 };
 
 
-export default function Actual({model}) {
+export default function Actual({ actual }) {
   return (
     <>
       <div className="col-4">
@@ -19,7 +19,7 @@ export default function Actual({model}) {
         <div className="card" id="prodbgright">
           <div className="card-body fw-bolder text-end h-auto " id="fontprodleft">
           {
-            model !== undefined ? (<div>{model.result}</div>) : '-'
+            actual != undefined ? (<div>{actual}</div>) : '-'
           }
           </div>
         </div>

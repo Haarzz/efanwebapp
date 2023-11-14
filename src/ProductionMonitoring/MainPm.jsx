@@ -24,35 +24,32 @@ export default function MainProductionMonitoringScreen() {
     });
   };
 
-  const [allModel, setAllModel] = useState([]);
-  useEffect(() => {
-    axios.get(`http://localhost:4000/api/alldata/${user}`)
-  }, [needRefresh]);
+  const [allArduino, setAllArduino] = useState([]);
+  const [selectedArduino, setSelectedArduino] = useState();
 
-  const [id, setModelId] = useState();
-
-  let [socket , setSocket] = useState(null);
-  useEffect(() => {
-    setSocket(new WebsocketService);
-    console.log('socket berhasil di inisiasi')
-  } , []);
+  // let [socket , setSocket] = useState(null);
+  // useEffect(() => {
+  //   setSocket(new WebsocketService);
+  //   console.log('socket berhasil di inisiasi')
+  // } , []);
   
-  useEffect(() => {
-    console.log('model id ' , id , socket);
-    socket?.setModelId(id, refresh);
-  }, [id, refresh, socket]);
+  // useEffect(() => {
+  //   console.log('model id ' , id , socket);
+  //   socket?.setModelId(id, refresh);
+  // }, [id, refresh, socket]);
 
-  const model = allModel.find((model) => model.ID === id);
+  const selectedArduinoName = allArduino.find((arduino) => arduino.nama_arduino === selectedArduino.nama_arduino);
 
-  const prodTitle = "Production Monitoring";
+  
   const [isControlsEnabled, setIsControlsEnabled] = useState(true);
   useEffect(() => {
+    const prodTitle = "Production Monitoring";
     const oriTitle = document.title;
     document.title = prodTitle;
     return () => {
       document.title = oriTitle;
     };
-  });
+  } , []);
 
 
   const handleStartClick = () => {
@@ -87,8 +84,8 @@ export default function MainProductionMonitoringScreen() {
           <div className="col-4">
             <div className="row">
               <div className="col-6">
-                <RunModel allModel={allModel} chooseModel={(newModel) => setModelId(newModel.ID)} />
-              </div>
+                <RunModel allArduino={allArduino} chooseArduino={(newArduino) => setSelectedArduino(newArduino)} />
+              </div> 
               <div className="col-6">
                 <button type="button" className="btn btn-success" data-bs-toggle="button" onClick={handleStartClick}>
                   Start
@@ -103,23 +100,23 @@ export default function MainProductionMonitoringScreen() {
         <div className="row">
           <div className="col-8" id="prodleft">
             <div className="row m-2">
-              <ModelName model={model} />
+              <ModelName modelName={selectedArduino?.assignedTransactionId.model_id.model_name} />
             </div>
             <div className="row m-2">
-              <ProdPlan model={model} />
+              <ProdPlan plan={selectedArduino?.assignedTransactionId.plan} />
             </div>
             <div className="row m-2">
-              <Plan model={model} />
+              <Plan />
             </div>
             <div className="row m-2">
-              <Actual model={model} />
+              <Actual actual={selectedArduino?.assignedTransactionId.actual} />
             </div>
             <div className="row m-2">
-              <Different model={model} />
+              <Different transaction={selectedArduino?.assignedTransactionId} />
             </div>
           </div>
           <div className="col-4 " id="prodright">
-            <Efficiency model={model} />
+            <Efficiency transaction={selectedArduino?.assignedTransactionId} />
           </div>
         </div>
       </div>

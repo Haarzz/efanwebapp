@@ -1,11 +1,11 @@
 import PropTypes from "prop-types";
 
 ModelName.propTypes = {
-  model: PropTypes.any,
+  modelName: PropTypes.any,
 };
 
 
-export default function ModelName({model}) {
+export default function ModelName({modelName}) {
   return (
     <>
       <div className="col-4">
@@ -17,8 +17,8 @@ export default function ModelName({model}) {
         <div className="card" id="prodbgright">
           <div className="card-body fs-2 fw-bolder text-end h-auto">
             {
-              model !== undefined ? 
-                (<div>{model.modelname}</div>) :
+              modelName !== undefined ? 
+                (<div>{modelName}</div>) :
                 '-'
             }
           </div>

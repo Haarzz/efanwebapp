@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
 
 Different.propTypes = {
-  model: PropTypes.any,
+  transaction: PropTypes.any,
 };
 
 
-export default function Different({model}) {
-    let diff = '';
-  if (model !== undefined) {
-    diff = `${model.result - model.plan}`;
+export default function Different({ transaction }) {
+  let diff = '';
+  if (transaction != undefined) {
+    diff = `${transaction.result - transaction.plan}`;
   }
   return (
     <>
@@ -23,7 +23,7 @@ export default function Different({model}) {
         <div className="card" id="prodbgright">
           <div className="card-body fw-bolder text-end h-auto" id="fontprodleft">
             {
-              model !== undefined ? <div>{diff}</div> : '-'
+              transaction != undefined ? <div>{diff}</div> : '-'
             }
           </div>
         </div>

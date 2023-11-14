@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 
 ProdPlan.propTypes = {
-  model: PropTypes.any,
+  plan: PropTypes.any,
 };
 
-export default function ProdPlan({ model }) {
+export default function ProdPlan({ plan }) {
   return (
     <>
       <div className="col-4">
@@ -18,7 +18,7 @@ export default function ProdPlan({ model }) {
         <div className="card" id="prodbgright">
           <div className="card-body fw-bolder text-end" id="fontprodleft">
             {
-              model !== undefined ? <div>{model.plan}</div> : '-'
+              plan !== undefined ? <div>{plan}</div> : '-'
             }
           </div>
         </div>

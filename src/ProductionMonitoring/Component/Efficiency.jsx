@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 
 Efficiency.propTypes = {
-  model: PropTypes.any,
+  transaction: PropTypes.any,
 };
 
-export default function Efficiency({model}) {
+export default function Efficiency({ transaction }) {
     let efficiency = '';
-    if (model !== undefined) {
-        efficiency = `${((model.result / model.plan) * 100).toFixed(2)}%`;
+    if (transaction !== undefined) {
+        efficiency = `${((transaction.result / transaction.plan) * 100).toFixed(2)}%`;
     } else {
       efficiency = '-';
     }
