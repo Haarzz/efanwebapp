@@ -6,7 +6,6 @@ import Actual from "./Component/Actual";
 import Different from "./Component/Different";
 import Efficiency from "./Component/Efficiency";
 import RunModel from "./Component/RunModel";
-import axios from "axios";
 import ModalFormInput from "./Component/ModalFormInput";
 import DateTime from "./Component/DateTime.jsx";
 import useMainPmViewModel from "./MainPmViewModel.jsx";
@@ -41,7 +40,7 @@ export default function MainProductionMonitoringScreen() {
               <div className="col-6">
                 <RunModel 
                   allArduino={viewModel.getData.allArduino} 
-                  chooseArduino={(newArduino) => viewModel.setSelectedArduino(newArduino)} />
+                  chooseArduino={(newArduino) => viewModel.chooseArduino(newArduino)} />
               </div>
               <div className="col-6">
                 <button type="button" className="btn btn-success" data-bs-toggle="button" onClick={viewModel.handleStartClick}>

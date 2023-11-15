@@ -2,6 +2,7 @@ import { useEffect , useState } from "react";
 import { useUser } from "../Contexts/UserContext";
 import MainPmRepository from "./MainPmRepository";
 import { useWebsocket } from "../Contexts/WebsocketProvider";
+import axios from "axios";
 export default function useMainPmViewModel() {
   useEffect(() => {
     const prodTitle = "Production Monitoring";
@@ -13,6 +14,18 @@ export default function useMainPmViewModel() {
   }, []);
 
   const [selectedArduino, setSelectedArduino] = useState();
+  function chooseArduino(newArduino){
+    axios.get(`http://localhost:4000/api/get-detail-arduino/${newArduino.nama_arduino}`)
+        .then(response => {
+            if (response.status == 200){
+                setSelectedArduino(response.data);
+            }
+            else {
+                console.log("Response 404, ketika milih arduino : " , response.data);
+            }
+        })
+        .catch(err => console.log("Ada error ketika fetch arduino," , err))
+  }
 
   const websocketService = useWebsocket();
 
@@ -27,7 +40,6 @@ export default function useMainPmViewModel() {
     if (selectedArduino != undefined){
         websocketService.on(selectedArduino.nama_arduino , (message) => {
             console.log(`dapat pesan dari arduino ${selectedArduino.nama_arduino} ` , message)
-            setGetData({...getData , allArduino : message.allArduino})
             setSelectedArduino(message.allArduino.find(arduino => arduino.nama_arduino == selectedArduino.nama_arduino))
         });
     }
@@ -59,7 +71,7 @@ export default function useMainPmViewModel() {
     handleStartClick,
     handleStopClick,
     isControlsEnabled,
-    setSelectedArduino,
+    chooseArduino,
     selectedArduino,
     getData,
   };
