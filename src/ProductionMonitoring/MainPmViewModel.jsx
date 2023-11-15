@@ -40,7 +40,7 @@ export default function useMainPmViewModel() {
     if (selectedArduino != undefined){
         websocketService.on(selectedArduino.nama_arduino , (message) => {
             console.log(`dapat pesan dari arduino ${selectedArduino.nama_arduino} ` , message)
-            setSelectedArduino(message.allArduino.find(arduino => arduino.nama_arduino == selectedArduino.nama_arduino))
+            setSelectedArduino(message.arduino)
         });
     }
   } , [selectedArduino])
