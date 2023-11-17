@@ -15,7 +15,7 @@ export default function useMainPmViewModel() {
 
   const [selectedArduino, setSelectedArduino] = useState();
   function chooseArduino(newArduino){
-    axios.get(`http://localhost:4000/api/get-detail-arduino/${newArduino.nama_arduino}`)
+   const getDetailArduino = axios.get(`http://localhost:4000/api/get-detail-arduino/${newArduino.nama_arduino}`)
         .then(response => {
             if (response.status == 200){
                 setSelectedArduino(response.data);
@@ -24,7 +24,7 @@ export default function useMainPmViewModel() {
                 console.log("Response 404, ketika milih arduino : " , response.data);
             }
         })
-        .catch(err => console.log("Ada error ketika fetch arduino," , err))
+        .catch(err => console.log("Ada error ketika fetch transaksi," , err))
   }
 
   const websocketService = useWebsocket();
@@ -34,14 +34,36 @@ export default function useMainPmViewModel() {
     allGroup: [],
     allArduino: [],
   });
+  const [listTransaction, setListTransaction] = useState([])
+  function chooseTransaction(transaction) {
+    axios.put("http://localhost:4000/api/update-transaction-id/", {
+      nama_arduino: selectedArduino.nama_arduino,
+      trans_id: transaction.id
+    })
+    .then(response => {
+      if(response.status == 200) {
+        console.log('berhasil update arduino ' , response.data)
+        setSelectedArduino(response.data)
+      }
+    })
+    .catch(err => console.log("Ada error ketika fetch arduino," , err))
+
+  }
+
 
   useEffect(() => {
-    console.log("USE EFFECT JALAN " , selectedArduino , websocketService)
     if (selectedArduino != undefined){
         websocketService.on(selectedArduino.nama_arduino , (message) => {
             console.log(`dapat pesan dari arduino ${selectedArduino.nama_arduino} ` , message)
             setSelectedArduino(message.arduino)
         });
+    }
+    if (selectedArduino != undefined){
+      axios.get(`http://localhost:4000/api/get-transaction-by-arduino/${selectedArduino.nama_arduino}`)
+        .then(response => {
+          setListTransaction(response.data)
+        })
+        .catch(err => console.log("Ada error ketika fetch arduino," , err))
     }
   } , [selectedArduino])
   
@@ -74,5 +96,8 @@ export default function useMainPmViewModel() {
     chooseArduino,
     selectedArduino,
     getData,
+    listTransaction,
+    chooseTransaction,
+
   };
 }

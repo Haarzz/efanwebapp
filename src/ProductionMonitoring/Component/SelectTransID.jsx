@@ -1,29 +1,20 @@
+import Select from "react-select";
 import PropTypes from "prop-types";
-import Select from 'react-select';
 
-RunArduino.propTypes = {
-  allArduino: PropTypes.any,
-  chooseArduino: PropTypes.func,
-};
+SelectTransID.propTypes = {
+    listTransaction: PropTypes.any,
+    chooseTransaction: PropTypes.func,
+    currentTransaction: PropTypes.any
+  };
 
 
-export default function RunModel({ allModel , chooseModel }) {
+export default function SelectTransID({listTransaction , chooseTransaction , currentTransaction}) {
+  
   return (
-    <>
-        <div className="row">
-          <div className="col-md-7 mt-1">
-            <h4 className="text-start p-3">Running Model</h4>
-          </div>
-          <div className="col-md-4 p-1">
-            <Select 
-              options={allModel} 
-              getOptionLabel={(model) => `${model.modelname} (${model.ID})`}
-              onChange={chooseModel}
-              isSearchable={false}
-              />
-            
-          </div>
-        </div>
-    </>
-  );
+    <Select options={listTransaction} 
+        getOptionLabel={(transaction) => `${transaction.model_id.model_name}`} 
+        onChange={chooseTransaction} 
+        isSearchable={false}
+        value={currentTransaction} />
+  )
 }

@@ -15,13 +15,7 @@ export default function MainAcc() {
     };
   }, []);
   const navigate = useNavigate();
-  const handleRegister = async () => {
-    try {
-      navigate("/register");
-    } catch {
-      console.log("Error Regist");
-    }
-  };
+
   const handleAdmin = async () => {
     try {
       navigate("/efanadmin");

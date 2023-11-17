@@ -10,6 +10,7 @@ import SidebarScaffolding from "./components/Sidebar/SidebarScaffolding.jsx";
 import MainAcc from "./Dashboard/Account/MainAcc";
 import MainAdmin from "./AdminPage/MainAdmin.jsx";
 import { WebsocketProvider } from "./Contexts/WebsocketProvider.jsx";
+import AdminMiddleware from "./routing/AdminMiddleware.jsx";
 
 function App() {
   return (
@@ -19,7 +20,11 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Navigate to="/dashboard" />} />
           <Route path="/register" element={<Registration />} />
-          <Route path="/efanadmin" element={<MainAdmin />} />
+          <Route path="/efanadmin" element={
+              <AdminMiddleware>
+                <MainAdmin />
+              </AdminMiddleware>
+            } />
 
           <Route element={<SidebarScaffolding />}>
             <Route

@@ -9,10 +9,12 @@ import RunModel from "./Component/RunModel";
 import ModalFormInput from "./Component/ModalFormInput";
 import DateTime from "./Component/DateTime.jsx";
 import useMainPmViewModel from "./MainPmViewModel.jsx";
+import SelectTransID from "./Component/SelectTransID.jsx";
 
 export default function MainProductionMonitoringScreen() {
   const viewModel = useMainPmViewModel();
-
+  console.log("isi Transaction", viewModel.listTransaction)
+  console.log("isi selectedArduino", viewModel.selectedArduino)
   return (
     <>
       <ModalFormInput mainPmData={viewModel.getData}/>
@@ -33,16 +35,25 @@ export default function MainProductionMonitoringScreen() {
         </div>
         <div className="row">
           <div className="col-8">
-            <DateTime />
+            <div className="row">
+              <div className="col-9">
+              <DateTime />
+              </div>
+              <div className="col-3">
+                <SelectTransID listTransaction={viewModel.listTransaction} 
+                  chooseTransaction={viewModel.chooseTransaction}
+                  currentTransaction={viewModel.selectedArduino?.assigned_transactionId} />
+              </div>
+            </div>
           </div>
           <div className="col-4">
             <div className="row">
-              <div className="col-6">
+              <div className="col-7">
                 <RunModel 
                   allArduino={viewModel.getData.allArduino} 
                   chooseArduino={(newArduino) => viewModel.chooseArduino(newArduino)} />
               </div>
-              <div className="col-6">
+              <div className="col-5">
                 <button type="button" className="btn btn-success" data-bs-toggle="button" onClick={viewModel.handleStartClick}>
                   Start
                 </button>
