@@ -23,6 +23,13 @@ export default function MainAcc() {
     console.log(error);
     }
   };
+  const handleTransactionPage = async () => {
+    try {
+      navigate("/all-transaction");
+    } catch (error){
+    console.log(error);
+    }
+  };
   return (
     <div className="vh-100 flex-row d-flex">
       <div className="flex-grow-1 flex-column d-flex pt-1">
@@ -48,6 +55,14 @@ export default function MainAcc() {
                   {" "}
                   Admin Page{" "}
                 </button> : undefined
+                }
+              </div>
+              <div className="col-12 pb-2">
+                {
+                  user === "admin" ?
+                  <button className="btn btn-secondary w-25" onClick={handleTransactionPage}>
+                    {""}Today`s Transaction{""}
+                  </button> : undefined
                 }
               </div>
               

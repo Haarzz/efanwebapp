@@ -1,11 +1,9 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import { useUser } from "../../../../Contexts/UserContext";
 
 // eslint-disable-next-line react/prop-types
 export default function AddArduino({ setParentArduinoName , arduinoNames}) {
   let nextId = 0;
-  const { user } = useUser();
   const [name, setName] = useState("");
 
   const [arduinoMessage, setArduinoMessage] = useState("");
@@ -16,10 +14,10 @@ export default function AddArduino({ setParentArduinoName , arduinoNames}) {
   const handleArduinoSubmit = async (e) => {
     e.preventDefault()
     try {
-      setOkArduinoMessage(`Success Adding Arduino to ${user}`);
+      setOkArduinoMessage(`Success Adding Arduino `);
       setParentArduinoName([...arduinoNames, { name: name }]);
     } catch (error) {
-      setArduinoMessage(`Failed Adding Arduino to ${user}`);
+      setArduinoMessage(`Failed Adding Arduino to ${name}`);
     }
   };
   return (

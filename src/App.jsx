@@ -8,9 +8,10 @@ import MainEc from "./EnergyConsumption/MainEc";
 import MainSPI from "./SparePartInventory/MainSPI";
 import SidebarScaffolding from "./components/Sidebar/SidebarScaffolding.jsx";
 import MainAcc from "./Dashboard/Account/MainAcc";
-import MainAdmin from "./AdminPage/MainAdmin.jsx";
+import MainAdmin from "./Dashboard/Account/AdminPage/MainAdmin.jsx"
 import { WebsocketProvider } from "./Contexts/WebsocketProvider.jsx";
 import AdminMiddleware from "./routing/AdminMiddleware.jsx";
+import TransactionHistory from "./Dashboard/Account/TransactionHistoryPage/TransactionHistory.jsx";
 
 function App() {
   return (
@@ -21,10 +22,17 @@ function App() {
           <Route path="/" element={<Navigate to="/dashboard" />} />
           <Route path="/register" element={<Registration />} />
           <Route path="/efanadmin" element={
+          <AdminMiddleware>
+            <MainAdmin />
+          </AdminMiddleware>} />
+          <Route
+            path="/all-transaction"
+            element={
               <AdminMiddleware>
-                <MainAdmin />
-              </AdminMiddleware>
-            } />
+                <TransactionHistory />
+                </AdminMiddleware>
+            }
+          />
 
           <Route element={<SidebarScaffolding />}>
             <Route

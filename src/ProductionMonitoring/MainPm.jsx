@@ -13,8 +13,6 @@ import SelectTransID from "./Component/SelectTransID.jsx";
 
 export default function MainProductionMonitoringScreen() {
   const viewModel = useMainPmViewModel();
-  console.log("isi Transaction", viewModel.listTransaction)
-  console.log("isi selectedArduino", viewModel.selectedArduino)
   return (
     <>
       <ModalFormInput mainPmData={viewModel.getData}/>

@@ -1,11 +1,11 @@
 import { useState } from "react";
 import AddArduino from "./AddArduino";
 import axios from "axios";
-import { useNavigate } from "react-router";
+import { Message } from 'primereact/message';
+        
 
 export default function RegisterNewAccount() {
 
-  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -39,17 +39,17 @@ export default function RegisterNewAccount() {
         })
       if (response.status === 200) {
         setSuccessMessage("Registration Successfull")
-        setTimeout(()=>window.location.reload(true), 3000)
+        setTimeout(()=> window.location.reload(true), 2000)
       }
     } catch (error) {
       console.error(error)
       setMessage("Registration Failed");
+      setTimeout(()=> setMessage(''), 2000)
     }
   }
   const setParentArduinoName = (name) => {
     setArduinoNames(name);
   };
-  
   return (
     <>
       <label htmlFor="exampleInputEmail1" className="form-label">
@@ -98,8 +98,14 @@ export default function RegisterNewAccount() {
           Register
         </button>
       </div>
-      <p className="text-success">{successMessage}</p>
-      <p className="text-danger">{message}</p>
+        <div className="text-center pt-2">
+      {successMessage && (
+      <Message severity="success" text={successMessage} />
+    )}
+    {message && (
+      <Message severity="error" text={message} />
+    )}
+    </div>
     </>
   );
 }

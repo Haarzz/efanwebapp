@@ -71,9 +71,15 @@ dependencies:
   chart.js:
     specifier: ^4.4.0
     version: 4.4.0
+  datatables.net-bs5:
+    specifier: 1.13.5
+    version: 1.13.5
   faker:
     specifier: ^6.6.6
     version: 6.6.6
+  font-awesome:
+    specifier: 4.6.3
+    version: 4.6.3
   framer-motion:
     specifier: ^10.16.4
     version: 10.16.4(react-dom@18.2.0)(react@18.2.0)
@@ -86,6 +92,9 @@ dependencies:
   pnpm:
     specifier: ^8.9.0
     version: 8.9.0
+  primereact:
+    specifier: ^10.0.9
+    version: 10.0.9(@types/react@18.2.24)(react-dom@18.2.0)(react@18.2.0)
   prop-types:
     specifier: ^15.8.1
     version: 15.8.1
@@ -95,6 +104,12 @@ dependencies:
   react-bootstrap:
     specifier: ^2.9.0
     version: 2.9.0(@types/react@18.2.24)(react-dom@18.2.0)(react@18.2.0)
+  react-bootstrap-table-next:
+    specifier: ^4.0.3
+    version: 4.0.3(classnames@2.3.2)(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
+  react-bootstrap-table2-paginator:
+    specifier: ^2.1.2
+    version: 2.1.2(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
   react-chartjs-2:
     specifier: ^5.2.0
     version: 5.2.0(chart.js@4.4.0)(react@18.2.0)
@@ -113,6 +128,9 @@ dependencies:
   react-select:
     specifier: ^5.7.7
     version: 5.7.7(@types/react@18.2.24)(react-dom@18.2.0)(react@18.2.0)
+  react-table:
+    specifier: ^7.8.0
+    version: 7.8.0(react@18.2.0)
   recharts:
     specifier: ^2.8.0
     version: 2.8.0(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
@@ -2878,6 +2896,19 @@ packages:
     engines: {node: '>=12'}
     dev: false
 
+  /datatables.net-bs5@1.13.5:
+    resolution: {integrity: sha512-q+/CSEPYULV6//8kvrjaAH/rVkoLOP9s6z+ajEbgNC/6b3WRbCbcifPXRp6XVZ94VapaqtZKveS1s2eeqZMr1g==}
+    dependencies:
+      datatables.net: 1.13.8
+      jquery: 3.7.1
+    dev: false
+
+  /datatables.net@1.13.8:
+    resolution: {integrity: sha512-2pDamr+GUwPTby2OgriVB9dR9ftFKD2AQyiuCXzZIiG4d9KkKFQ7gqPfNmG7uj9Tc5kDf+rGj86do4LAb/V71g==}
+    dependencies:
+      jquery: 3.7.1
+    dev: false
+
   /debug@4.3.4(supports-color@5.5.0):
     resolution: {integrity: sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==}
     engines: {node: '>=6.0'}
@@ -3349,6 +3380,11 @@ packages:
         optional: true
     dev: false
 
+  /font-awesome@4.6.3:
+    resolution: {integrity: sha512-I5rWuHv7MI5uYDGFT1SJohxdkTfks41QQ9fvMEzvBnWppsehXnoj8LNuW4MGtawSrHvApYVhCZSC7rk5wDycyw==}
+    engines: {node: '>=0.10.3'}
+    dev: false
+
   /for-each@0.3.3:
     resolution: {integrity: sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw==}
     dependencies:
@@ -3754,6 +3790,10 @@ packages:
       set-function-name: 2.0.1
     dev: true
 
+  /jquery@3.7.1:
+    resolution: {integrity: sha512-m4avr8yL8kmFN8psrbFFFmB/If14iN5o9nw/NgnnM+kybDJpRsAynV2BsfpTYrTRysYUdADVD7CkUUizgkpLfg==}
+    dev: false
+
   /js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
 
@@ -4068,6 +4108,23 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
+  /primereact@10.0.9(@types/react@18.2.24)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-5hjCY0gVJkAhmxRkME8GCZPl0TpUMsjtrwYwxkRJlchu5oH8XaRQKbKmnehmNmiP59cmphaXVkL8vei19O9+PQ==}
+    peerDependencies:
+      '@types/react': ^17.0.0 || ^18.0.0
+      react: ^17.0.0 || ^18.0.0
+      react-dom: ^17.0.0 || ^18.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+    dependencies:
+      '@types/react': 18.2.24
+      '@types/react-transition-group': 4.4.7
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-transition-group: 4.4.5(react-dom@18.2.0)(react@18.2.0)
+    dev: false
+
   /prop-types-extra@1.1.1(react@18.2.0):
     resolution: {integrity: sha512-59+AHNnHYCdiC+vMwY52WmvP5dM3QLeoumYuEyceQDi9aEhtwN9zIQ2ZNo25sMyXnbh32h+P1ezDsUpUH3JAew==}
     peerDependencies:
@@ -4109,6 +4166,35 @@ packages:
       prop-types: 15.8.1
       react: 18.2.0
       react-bootstrap: 2.9.0(@types/react@18.2.24)(react-dom@18.2.0)(react@18.2.0)
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
+  /react-bootstrap-table-next@4.0.3(classnames@2.3.2)(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-uKxC73qUdUfusRf2uzDfMiF9LvTG5vuhTZa0lbAgHWSLLLaKTsI0iHf1e4+c7gP71q8dFsp7StvkP65SxC1JRg==}
+    peerDependencies:
+      classnames: ^2.2.5
+      prop-types: ^15.0.0
+      react: ^16.3.0
+      react-dom: ^16.3.0
+    dependencies:
+      classnames: 2.3.2
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-transition-group: 4.4.5(react-dom@18.2.0)(react@18.2.0)
+      underscore: 1.9.1
+    dev: false
+
+  /react-bootstrap-table2-paginator@2.1.2(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-LC5znEphhgKJvaSY1q8d+Gj0Nc/1X+VS3tKJjkmWmfv9P61YC/BnwJ+aoqEmQzsLiVGowrzss+i/u+Tip5H+Iw==}
+    peerDependencies:
+      prop-types: ^15.0.0
+      react: ^16.3.0
+      react-dom: ^16.3.0
+    dependencies:
+      classnames: 2.3.2
+      prop-types: 15.8.1
+      react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
@@ -4375,6 +4461,14 @@ packages:
       invariant: 2.2.4
       react: 18.2.0
       tslib: 2.6.2
+    dev: false
+
+  /react-table@7.8.0(react@18.2.0):
+    resolution: {integrity: sha512-hNaz4ygkZO4bESeFfnfOft73iBUj8K5oKi1EcSHPAibEydfsX2MyU6Z8KCr3mv3C9Kqqh71U+DhZkFvibbnPbA==}
+    peerDependencies:
+      react: ^16.8.3 || ^17.0.0-0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /react-tooltip@4.5.1(react-dom@18.2.0)(react@18.2.0):
@@ -4852,6 +4946,10 @@ packages:
       react: '>=16.14.0'
     dependencies:
       react: 18.2.0
+    dev: false
+
+  /underscore@1.9.1:
+    resolution: {integrity: sha512-5/4etnCkd9c8gwgowi5/om/mYO5ajCaOgdzj/oW+0eQV9WxKBDZw5+ycmKmeaTXjInS/W0BzpGLo2xR2aBwZdg==}
     dev: false
 
   /update-browserslist-db@1.0.13(browserslist@4.22.1):
