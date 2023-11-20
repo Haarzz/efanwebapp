@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { UserProvider } from './Contexts/UserContext.jsx';
-import 'primereact/resources/themes/viva-dark/theme.css';
+import 'primereact/resources/themes/lara-light-indigo/theme.css';
       
 
 ReactDOM.createRoot(document.getElementById('root')).render(

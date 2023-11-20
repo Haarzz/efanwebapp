@@ -53,7 +53,7 @@ export default function TransactionHistory() {
     <>
     <button className="btn btn-danger ms-3 mt-2" onClick={handleBack}>Back</button>
     <div className="tablee">
-      <DataTable value={data} className="p-datatable" columnResizeMode="expand"  showGridlines  paginator rows={5} rowsPerPageOptions={[10, 25, 50]}  >
+      <DataTable value={data} className="p-datatable" columnResizeMode="expand"  showGridlines  paginator rows={10} rowsPerPageOptions={[10, 25, 50]}  >
         <Column field="no"  sortable header="NO" />
         <Column field="line"  sortable header="LINE" />
         <Column field="group"  sortable header="GROUP" />

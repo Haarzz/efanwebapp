@@ -1,8 +1,9 @@
-import { useEffect , useState } from "react";
+import { useEffect , useState, useRef } from "react";
 import { useUser } from "../Contexts/UserContext";
 import MainPmRepository from "./MainPmRepository";
 import { useWebsocket } from "../Contexts/WebsocketProvider";
 import axios from "axios";
+import {confirmDialog } from 'primereact/confirmdialog';
 export default function useMainPmViewModel() {
   useEffect(() => {
     const prodTitle = "Production Monitoring";
@@ -15,7 +16,7 @@ export default function useMainPmViewModel() {
 
   const [selectedArduino, setSelectedArduino] = useState();
   function chooseArduino(newArduino){
-   const getDetailArduino = axios.get(`http://localhost:4000/api/get-detail-arduino/${newArduino.nama_arduino}`)
+   axios.get(`http://localhost:4000/api/get-detail-arduino/${newArduino.nama_arduino}`)
         .then(response => {
             if (response.status == 200){
                 setSelectedArduino(response.data);
@@ -78,18 +79,36 @@ export default function useMainPmViewModel() {
     }
   }, [user]);
 
-
+// Handle START AND STOP PRODUCTIOn
   const [isControlsEnabled, setIsControlsEnabled] = useState(true);
+  const toast = useRef(null);
 
+  const acceptStart = () => {
+      toast.current.show({ severity: 'success', summary: 'Start', detail: 'You Started Production', life: 3000 });setIsControlsEnabled(false)
+  }
+  const acceptStop = () => {
+      toast.current.show({ severity: 'error', summary: 'Stop', detail: 'You Stopped Production', life: 3000 });setIsControlsEnabled(true)
+  }
   const handleStartClick = () => {
-    setIsControlsEnabled(false);
+      confirmDialog({
+          message: 'Are you sure you want to Start Procution?',
+          header: 'Confirmation',
+          icon: 'pi pi-check',
+          accept: acceptStart,
+      });
   };
 
   const handleStopClick = () => {
-    setIsControlsEnabled(true);
+      confirmDialog({
+          message: 'Are you sure you want to Stop Production?',
+          header: 'Delete Confirmation',
+          icon: 'pi pi-info-circle',
+          acceptClassName: 'p-button-danger',
+          accept: acceptStop,
+      });
   };
-
   return {
+    confirmDialog,
     handleStartClick,
     handleStopClick,
     isControlsEnabled,
@@ -98,6 +117,8 @@ export default function useMainPmViewModel() {
     getData,
     listTransaction,
     chooseTransaction,
+    toast,
+
 
   };
 }

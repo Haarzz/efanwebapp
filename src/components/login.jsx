@@ -68,7 +68,7 @@ function Login() {
                   <input type="password" className="form-control pb-1" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
                 </div>
                 <div className="buttonlogin">
-                  <Button label="Submit" onClick={(e) => handleSubmit(e)} className="rounded-pill w-50" />
+                  <Button label="Login" onClick={(e) => handleSubmit(e)} className="rounded-pill w-50" />
                 </div>
                 <p className="pt-3 text-center">
                   {message && <Message severity="error" text={message} />}

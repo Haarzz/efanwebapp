@@ -10,9 +10,13 @@ import ModalFormInput from "./Component/ModalFormInput";
 import DateTime from "./Component/DateTime.jsx";
 import useMainPmViewModel from "./MainPmViewModel.jsx";
 import SelectTransID from "./Component/SelectTransID.jsx";
+import { Button } from "primereact/button";
+import { Toast } from "primereact/toast";
+import { ConfirmDialog } from "primereact/confirmdialog";
 
 export default function MainProductionMonitoringScreen() {
   const viewModel = useMainPmViewModel();
+  let namaLine = viewModel.selectedArduino?.nama_arduino;
   return (
     <>
       <ModalFormInput mainPmData={viewModel.getData}/>
@@ -21,7 +25,11 @@ export default function MainProductionMonitoringScreen() {
           <div className="card-header">
             <div className="row">
               <div className="col-10">
-                <h2 className="text-center fw-bolder text-light">MOTOR ASSY 1</h2>
+                  { namaLine !== undefined ? (
+                  <h2 className="text-center fw-bolder text-light">{namaLine}</h2>
+                  ) : (
+                    <h2 className="text-center fw-bolder text-light">-</h2>
+                  ) }
               </div>
               <div className="col-2" id="inputplan">
                 <button className="btn btn-light btn-sm mt-1 text-dark fw-bolder" data-bs-toggle="modal" data-bs-target="#inputdata" disabled={!viewModel.isControlsEnabled}>
@@ -40,24 +48,24 @@ export default function MainProductionMonitoringScreen() {
               <div className="col-3">
                 <SelectTransID listTransaction={viewModel.listTransaction} 
                   chooseTransaction={viewModel.chooseTransaction}
-                  currentTransaction={viewModel.selectedArduino?.assigned_transactionId} />
+                  currentTransaction={viewModel.selectedArduino?.assigned_transactionId}
+                  isControlsEnabled={!viewModel.isControlsEnabled} />
               </div>
             </div>
           </div>
           <div className="col-4">
             <div className="row">
-              <div className="col-7">
-                <RunModel 
-                  allArduino={viewModel.getData.allArduino} 
-                  chooseArduino={(newArduino) => viewModel.chooseArduino(newArduino)} />
+              <div className="col-6">
+                  <RunModel 
+                    allArduino={viewModel.getData.allArduino} 
+                    chooseArduino={(newArduino) => viewModel.chooseArduino(newArduino)} 
+                    isControlEnable={!viewModel.isControlsEnabled}/>
               </div>
-              <div className="col-5">
-                <button type="button" className="btn btn-success" data-bs-toggle="button" onClick={viewModel.handleStartClick}>
-                  Start
-                </button>
-                <button type="button" className="btn btn-danger ms-2 " data-bs-toggle="button" onClick={viewModel.handleStopClick}>
-                  Stop
-                </button>
+              <div className="col-6">
+                <Toast ref={viewModel.toast} />
+                <ConfirmDialog />
+                  <Button onClick={viewModel.handleStartClick} icon="pi pi-check" label="Start" className="btn btn-success me-1"></Button>
+                  <Button onClick={viewModel.handleStopClick} icon="pi pi-times" label="Stop" className="btn btn-danger" ></Button>
               </div>
             </div>
           </div>
