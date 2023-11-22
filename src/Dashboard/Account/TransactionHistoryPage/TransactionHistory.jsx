@@ -8,17 +8,28 @@ import 'primereact/resources/themes/viva-light/theme.css';
 
 
 export default function TransactionHistory() {
-  const [datas, setDatas] = useState([]);
-  const navigate = useNavigate()
+  const EnergyTitle = "History Transaction";
   useEffect(() => {
-      axios
-      .get("http://localhost:4000/api/get-all-transaction")
-      .then((response) =>{ response.data
-       setDatas(response.data)
-      })
-      .catch((error)=> {
-        console.log(error)
-      })
+    const oriTitle = document.title;
+    document.title = EnergyTitle;
+    return () => {
+      document.title = oriTitle;
+    };
+  } , []);
+  const [datas, setDatas] = useState([]);
+  const navigate = useNavigate();
+  const fetchData = () => {
+    axios
+    .get("http://localhost:4000/api/get-all-transaction")
+    .then((response) =>{ response.data
+     setDatas(response.data)
+    })
+    .catch((error)=> {
+      console.log(error)
+    })
+  };
+  useEffect(() => {
+      fetchData();
   }, []);
   const formatDateTime = (dateTimeString) => {
     const options = {
@@ -49,9 +60,13 @@ export default function TransactionHistory() {
       console.log(error)
     }
   }
+  const handleRefresh = () => {
+    fetchData();
+  }
   return (
     <>
-    <button className="btn btn-danger ms-3 mt-2" onClick={handleBack}>Back</button>
+    <button className="btn btn-danger ms-3 mt-2 mb-2" onClick={handleBack}>Back</button>
+    <button className="btn btn-primary ms-3 mt-2 mb-2" onClick={handleRefresh}>Refresh</button>
     <div className="tablee">
       <DataTable value={data} className="p-datatable" columnResizeMode="expand"  showGridlines  paginator rows={10} rowsPerPageOptions={[10, 25, 50]}  >
         <Column field="no"  sortable header="NO" />

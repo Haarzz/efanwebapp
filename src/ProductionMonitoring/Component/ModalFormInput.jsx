@@ -1,8 +1,9 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import "../style/ModalFormInput.css";
+import { Toast } from 'primereact/toast';
 
 export default function ModalFormInput({ mainPmData }) {
 
@@ -38,24 +39,28 @@ export default function ModalFormInput({ mainPmData }) {
   const handleArduinoChange = (event) => {
     setSelectedArduino(arduinoOptions.find(arduino => arduino.nama_arduino == event.target.value));
   };
+  const toast = useRef(null);
+  const showSuccess = () => {
+    toast.current.show({severity:'success', summary: 'Success', detail:'Success Adding Transaction', life: 2000});
+  }
+        
   //   ******************************************* SUBMIT FORM *********************************
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       // Send a POST request to the API using Axios
-      console.log('GROUP PAS NGESUBMIT ' , selectedGroup , '   ' , selectedGroup?.id)
       const response = await axios.post("http://localhost:4000/formData/", {
         group_id: selectedGroup?.id,
         model_id: selectedModel?.id,
         plan: plan,
         arduino : selectedArduino?.nama_arduino,
       });
-      console.log("API response:", response.data);
       setSelectedGroup(initialSelectedGroup);
       setSelectedModel(initialSelectedModel);
       setSelectedArduino(initialSelectedArduino);
       setPlan(initialPlan);
-      window.location.reload(true)
+      showSuccess()
+      setTimeout(window.location.reload(true), 3000);
     } catch (error) {
       console.error("Error:", error);
     }
@@ -64,6 +69,7 @@ export default function ModalFormInput({ mainPmData }) {
   //   ******************************************* END OF SUBMIT FORM *********************************
   return (
     <>
+    <Toast ref={toast} />
       <div className="modal fade" id="inputdata" tabIndex={"-1"} aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog" id="bgmodal">
           <div className="modal-content" id="bgmodal">
@@ -118,7 +124,7 @@ export default function ModalFormInput({ mainPmData }) {
                   </div>
                 </div>
                 <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-                  <button type="submit" id="submitButton" className="btn btn-primary mt-2">
+                  <button  type="submit" id="submitButton" className="btn btn-primary mt-2">
                     Submit
                   </button>
                 </div>

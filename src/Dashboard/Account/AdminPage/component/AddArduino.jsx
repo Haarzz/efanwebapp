@@ -1,23 +1,25 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { Toast } from "primereact/toast";
 
 // eslint-disable-next-line react/prop-types
 export default function AddArduino({ setParentArduinoName , arduinoNames}) {
   let nextId = 0;
   const [name, setName] = useState("");
-
-  const [arduinoMessage, setArduinoMessage] = useState("");
-  const [okArduinoMessage, setOkArduinoMessage] = useState("");
+  const toast = useRef(null)
+  const showSuccess = () => {
+    toast.current.show({severity:'success', summary: 'Success', detail:'Success Adding Arduino', life: 2000});
+  }
   function deleteArduino(deletedName){
     setParentArduinoName(arduinoNames.filter((value) => value !== deletedName))
   }
   const handleArduinoSubmit = async (e) => {
     e.preventDefault()
     try {
-      setOkArduinoMessage(`Success Adding Arduino `);
+      showSuccess();
       setParentArduinoName([...arduinoNames, { name: name }]);
     } catch (error) {
-      setArduinoMessage(`Failed Adding Arduino to ${name}`);
+      console.log(error)
     }
   };
   return (
@@ -35,6 +37,7 @@ export default function AddArduino({ setParentArduinoName , arduinoNames}) {
             setName(e.target.value);
           }}
         />
+        <Toast ref={toast} />
         <button
           className="btn btn-success ms-2 rounded-pill"
           onClick={(e) => {
@@ -52,8 +55,6 @@ export default function AddArduino({ setParentArduinoName , arduinoNames}) {
           ></button> </li>
         ))}
       </ol>
-      <p className="text-success">{okArduinoMessage}</p>
-      <p className="text-danger">{arduinoMessage}</p>
     </>
   );
 }

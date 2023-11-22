@@ -1,5 +1,6 @@
 
 import { useNavigate } from "react-router";
+import { useEffect } from "react";
 import "./admin.css";
 import RegisterNewAccount from "./component/RegisterNewAccount";
 import AddModel from "./component/AddModel";
@@ -7,6 +8,14 @@ import AddGroup from "./component/AddGroup";
 
 
 export default function MainAdmin() {
+  const EnergyTitle = "Admin Page";
+  useEffect(() => {
+    const oriTitle = document.title;
+    document.title = EnergyTitle;
+    return () => {
+      document.title = oriTitle;
+    };
+  } , []);
     const navigate = useNavigate();
     const handleBack = async () => {
     try {
@@ -30,8 +39,8 @@ export default function MainAdmin() {
           </div>
           <div className="card-body" id="">
             <div className="row">
-              <div className="col-6">
-                <div className="card flex-grow-1" id="bgadmin">
+              <div className="col-6 align-items-stretch">
+                <div className="card border-light" id="bgadmin" style={{width: "auto"}}>
                   <div className="card-header fw-bolder text-center" id="bgadmincardhead">
                     REGISTER NEW ACCOUNT
                   </div>
@@ -42,7 +51,7 @@ export default function MainAdmin() {
                   </div>
                 </div>
               </div>
-              <div className="col-6">
+              <div className="col-6 align-items-stretch">
                 <AddModel />
                 <AddGroup />
                 </div>
