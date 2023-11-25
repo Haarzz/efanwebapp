@@ -59,7 +59,7 @@ export default function ModalFormInput({ mainPmData }) {
       setSelectedModel(initialSelectedModel);
       setSelectedArduino(initialSelectedArduino);
       setPlan(initialPlan);
-      showSuccess()
+      showSuccess();
       setTimeout(window.location.reload(true), 3000);
     } catch (error) {
       console.error("Error:", error);

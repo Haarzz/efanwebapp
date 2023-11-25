@@ -17,11 +17,11 @@ export default function Efficiency({ transaction }) {
         <div className="card-body fs-3 fw-bolder text-center m-2">PROD./HEAD</div>
       </div>
       <div className="card my-2" id="prodbgright">
-        <div className="card-text fs-3 fw-bolder text-start ps-4 h-auto">TARGET : 14.05</div>
+        <div className="card-text fs-3 fw-bolder text-start ps-4 h-auto">TARGET : 05.02</div>
       </div>
       <div className="card my-2" id="prodbgright">
         <div className="card-body  fw-bolder text-center h-auto " id="fonttext">
-          3.85
+          42.3
         </div>
       </div>
       <div className="card my-2" id="prodbgleft">

@@ -6,8 +6,7 @@ export default function EnergyChart() {
     useEffect(() => {
         axios.get('http://localhost:4000/api/alldata')
         .then(response => {
-            const mysqlData =response.data;
-            setData(mysqlData);
+            setData(response.data);
         })
         .catch(error => {
             console.error('Error Fetching Data:', error);
@@ -15,8 +14,6 @@ export default function EnergyChart() {
     }, [])
     
     return (
-    <>
-
-    </>
+        data
     )
 }

@@ -1,10 +1,19 @@
 import { useEffect, useState} from "react";
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
-import EnergyChart from "./component/EnergyChart";
+import axios from "axios"
+import { Chart } from 'primereact/chart';
 
 export default function MainEc() {
   // eslint-disable-next-line no-unused-vars
-  const [data , setData] = useState([]);
+  const [data, setData] = useState([]);
+  useEffect(() => {
+      axios.get('http://localhost:4000/api/alldata')
+      .then(response => {
+          setData(response.data);
+      })
+      .catch(error => {
+          console.error('Error Fetching Data:', error);
+      })
+  }, [])
   const EnergyTitle = "Energy Consumptions";
   useEffect(() => {
     const oriTitle = document.title;
@@ -13,7 +22,15 @@ export default function MainEc() {
       document.title = oriTitle;
     };
   } , []);
-
+  const voltage = data.map(item => item.voltage)
+  const ampere = data.map(item => item.ampere)
+  const frequency = data.map(item => item.frequency)    
+  const power = data.map(item => item.power)    
+  
+  console.log("Voltage", voltage)
+  console.log("Ampere", ampere)
+  console.log("Frequency", frequency)
+  console.log("Power", power)
   return (
       <div className="w-100 pt-2">
           <h2 className="fw-bolder text-start m-2" id="dashboardmid">
@@ -32,87 +49,10 @@ export default function MainEc() {
           </div>
           <div className="row">
               <div className="col-7">
-                  <EnergyChart />
               </div>
               <div className="col-5">
-                  <AreaChart
-                      width={500}
-                      height={300}
-                      data={data}
-                      margin={{
-                          top: 10,
-                          right: 20,
-                          left: 30,
-                          bottom: 0,
-                      }}
-                  >
-                      <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="name" />
-                      <YAxis />
-                      <Tooltip />
-                      <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
-                  </AreaChart>
-              </div>
-          </div>
-          <div className="row">
-              <div className="col-4">
-                  <AreaChart
-                      width={400}
-                      height={280}
-                      data={data}
-                      margin={{
-                          top: 10,
-                          right: 10,
-                          left: 0,
-                          bottom: 0,
-                      }}
-                  >
-                      <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="name" />
-                      <YAxis />
-                      <Tooltip />
-                      <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
-                  </AreaChart>
-              </div>
-              <div className="col-4">
-                  <AreaChart
-                      width={400}
-                      height={280}
-                      data={data}
-                      margin={{
-                          top: 10,
-                          right: 10,
-                          left: 0,
-                          bottom: 0,
-                      }}
-                  >
-                      <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="name" />
-                      <YAxis />
-                      <Tooltip />
-                      <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
-                  </AreaChart>
-              </div>
-              <div className="col-4">
-                  <AreaChart
-                      width={400}
-                      height={280}
-                      data={data}
-                      margin={{
-                          top: 10,
-                          right: 30,
-                          left: 0,
-                          bottom: 0,
-                      }}
-                  >
-                      <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="name" />
-                      <YAxis />
-                      <Tooltip />
-                      <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
-                  </AreaChart>
-              </div>
-          </div>
+                  </div>
+      </div>
       </div>
   );
 }
